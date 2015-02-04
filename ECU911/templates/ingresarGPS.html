@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+    <div class="container cent">
+
+
+            <h1 style="text-align: center; font-weight: bold">Ingreso de GPS</h1>
+
+    <div class="row cent">
+
+            <form method="POST" action="/submitGPS/" class="well"  role="form" >
+
+ <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" name="id" class="form-control" id="idTitle" readonly="readonly" value="Autogenerado">
+          </div>
+      </div>
+      <div class="col-md-6"></div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="imeiTitle">IMEI</label>
+            <input type="text" name="imei" class="form-control" id="imeiTitle" required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="serialTitle" >SERIAL</label>
+            <input type="text"  name="serial" class="form-control" id="serialTitle"  required >
+        </div>
+       </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+            <label for="gisTitle">CÓDIGO GIS</label>
+            <input type="text" name="gis" class="form-control" id="gisTitle"  required>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="estadoTitle">ESTADO</label>
+            <select class="form-control" name="estado" id="estadoTitle">
+                <option value="ok">OK</option>
+                <option value="Mal Estado">Mal Estado</option>
+                <option value="Disponible">Disponible</option>
+                <option value="Mantenimiento">Mantenimiento</option>
+            </select>
+          </div>
+      </div>
+
+      <div class="col-md-6">
+
+          <div class="form-group">
+            <label for="origenTitle">ORIGEN</label>
+            <input type="text" name="origen" class="form-control" id="origenTitle" required>
+          </div>
+
+      </div>
+
+  </div>
+
+   <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="lugarTitle">LUGAR</label>
+                <select class="form-control" name="lugar" id="lugarTitle">
+                    <option value="UNIDAD">UNIDAD</option>
+                    <option value="ECU911">ECU911</option>
+                    <option value="BODEGA">BODEGA</option>
+                </select>
+          </div>
+      </div>
+
+   </div>
+
+
+    <div class="row">
+      <div class="col-md-12">
+          <div class="form-group">
+            <label for="notaTitle">NOTA</label>
+              <input type="text" name="nota" class="form-control" id="notaTitle" value="">
+
+          </div>
+      </div>
+
+   </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="window.location.href='/gps/'">Cerrar sin Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar Registro</button>
+          </div>
+          </form>
+
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+    $("#inicio").removeClass("active");
+    $("#gps").addClass("active");
+    </script>
+{% endblock %}

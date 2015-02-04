@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="Django default" product="" version="" jdbc-version="" driver-name="" driver-version="" uuid="9ebd933e-c696-4975-9575-088750a56ad2">
+    <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+    <jdbc-url>jdbc:mysql:///</jdbc-url>
+    <user-name>root</user-name>
+    <user-password>df9bdf98df99df9edf9f</user-password>
+    <libraries/>
+  </data-source>
+</component>

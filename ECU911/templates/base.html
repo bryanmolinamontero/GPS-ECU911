@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ECU-911</title>
+    <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+    <link rel="shortcut icon" href="/static/img/logo2.png" type="image/png" />
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block head %}
+
+    {% endblock%}
+
+</head>
+<body>
+
+<div class="header">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-sm-9">
+            <div class="row" >
+                <div class="col-md-1"></div>
+            <center><div id="ex4" class="col-md-3" style=" padding-top: 10px; padding-bottom: 5px;"><a href="/"> <img class="img-responsive" src="/static/img/logo2.png" alt=""/></a></div></center>
+            <div class="col-md-8 headerTitle visible-md visible-lg">SISTEMA DE GESTIÓN GPS</div>
+            <div class="col-md-8 visible-sm visible-xs" style="text-align: center"><h1>GPS</h1></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div id="header" style="width:100%;z-index: 1">
+<nav class="navbar navbar-inverse barra" role="navigation" style="z-index: 1">
+  <div class="container cent" >
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header" >
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >MENÚ</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li id="inicio" class="active"><a href="/">Inicio</a></li>
+        <li id="lineas"><a href="/lineas/">Líneas CNT</a></li>
+        <li id="gps"><a href="/gps/">GPS</a></li>
+        <li id="unidades"><a href="/unidades/">Unidades</a></li>
+        <li id="empresa" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Transmisiones<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li class="misionYvision"><a href="/misionYvision/">Unidades</a></li>
+            <li class="objetivos"><a href="/objetivos/">LINK</a></li>
+            <li><a href="/politicas/">LINK</a></li>
+            <li><a href="/estructuraFuncional/">LINK</a></li>
+            <!--<li class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li class="divider"></li>
+            <li><a href="#">One more separated link</a></li>-->
+          </ul>
+        </li>
+        <li id="noticias"><a href="/noticias/">INFORME</a></li>
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+</div>
+
+
+
+{% block body %}
+
+{% endblock%}
+
+
+
+<br/>
+<footer>
+            <div class="col-xs-12" style="background-color: #222222">
+                <br/>
+                <p style="text-align: center; font-weight: bold; color:#ffffff" >ECU911 MACHALA - Todos los Derechos Reservados</p>
+            </div>
+</footer>
+
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+     $("#miSlide").carousel();
+});
+</script>
+{% block js %}
+
+{% endblock%}
+
+</body>
+</html>
