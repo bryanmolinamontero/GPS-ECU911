@@ -36,14 +36,11 @@
                                 <th>ESTADO</th>
                                 <th>ORIGEN</th>
                                 <th>LUGAR</th>
-                                <th>NOTA</th>
-                                <th>EDIT</th>
+                                <!--<th>NOTA</th>-->
+                                <th class="col-md-1">EDIT</th>
                                 </thead>
-
                                 <tbody>
-
                                  {% for i in registros %}
-
                                         <tr>
                                         <td id="id_{{ i.im_id }}">{{i.im_id}}</td>
                                         <td id="imei_{{i.im_id}}">{{i.im_imei}}</td>
@@ -52,27 +49,24 @@
                                         <td id="estado_{{i.im_id}}">{{i.im_estado | default_if_none:""}}</td>
                                         <td id="origen_{{i.im_id}}">{{i.im_origen | default_if_none:""}}</td>
                                         <td id="lugar_{{i.im_id}}">{{i.im_lugar | default_if_none:""}}</td>
-                                        <td id="nota_{{i.im_id}}">{{i.im_nota | default_if_none:"h"}}</td>
+                                        <!--<td id="nota_{{i.im_id}}">{{i.im_nota | default_if_none:"h"}}</td>-->
+                                        <td >
 
+                                            <span class="btn glyphicon glyphicon-pencil" style="color: #418BCA; width: 1px;padding-top:0px;height: 1px;" aria-hidden="true" onclick="editarRegistro2({{ i.im_id }} , '{{ i.im_imei }}' , '{{ i.im_serial}}'  , '{{ i.im_codigo_gis|safe }}' , '{{ i.im_estado }}' , '{{ i.im_origen }}' , '{{ i.im_lugar }}', '{{ i.im_nota }}' )" data-toggle="modal" title="Visualizar/Editar" data-target="#myModal" ></span>
+                                            <span class="btn glyphicon glyphicon-remove" style="color: red;width: 1px;padding-top:0px;height: 1px;" aria-hidden="true" onclick="eliminarRegistro({{ i.im_id}} , '{{ i.im_imei }}' , '{{ i.im_serial}}'  , '{{ i.im_codigo_gis|safe }}')" data-toggle="modal" data-target="#myModal2" title="Eliminar"></span>
 
-                                        <td style="text-align: center">
-                                                <button type="button" class="btn btn-default" onclick="editarRegistro2({{ i.im_id }} , '{{ i.im_imei }}' , '{{ i.im_serial}}'  , '{{ i.im_codigo_gis|safe }}' , '{{ i.im_estado }}' , '{{ i.im_origen }}' , '{{ i.im_lugar }}', '{{ i.im_nota }}' )" data-toggle="modal" data-target="#myModal">
+                                            {% comment %}
+                                                <button style="width: 35px;" type="button" class="btn btn-primary" onclick="editarRegistro2({{ i.im_id }} , '{{ i.im_imei }}' , '{{ i.im_serial}}'  , '{{ i.im_codigo_gis|safe }}' , '{{ i.im_estado }}' , '{{ i.im_origen }}' , '{{ i.im_lugar }}', '{{ i.im_nota }}' )" data-toggle="modal" data-target="#myModal">
                                                 <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                                                </button>
 
-                                            </button>
-                                        <!--<button  id ="Editar" onclick="editarRegistro({{ i.id_personal }})" class="btn btn-success">
-                                        Editar
-                                        </button>-->
-
+                                                <button style="width: 35px;" type="button" class="btn btn-danger" onclick="editarRegistro2({{ i.im_id }} , '{{ i.im_imei }}' , '{{ i.im_serial}}'  , '{{ i.im_codigo_gis|safe }}' , '{{ i.im_estado }}' , '{{ i.im_origen }}' , '{{ i.im_lugar }}', '{{ i.im_nota }}' )" data-toggle="modal" data-target="#myModal">
+                                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                                </button>
+                                             {% endcomment %}
                                         </td>
-
-
-
                                         </tr>
-
                                  {% endfor %}
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -195,8 +189,74 @@
   </div>
 
 </div>
-<!-- fin del modal-->
+<!-- fin del modal editar-->
 
+
+<!-- modal de eliminar-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Eliminar GPS</h4>
+      </div>
+      <div class="modal-body">
+
+<!--<form method="POST" action="/eliminarGPS/" class="well"  role="form" >-->
+
+ <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="id2">ID</label>
+            <input type="text" name="id2" class="form-control" id="idTitle2" readonly="readonly">
+          </div>
+      </div>
+      <div class="col-md-6"></div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="imeiTitle2">IMEI</label>
+            <input type="text" name="imei2" class="form-control" id="imeiTitle2" >
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="serialTitle2" >SERIAL</label>
+            <input type="text"  name="serial2" class="form-control" id="serialTitle2" >
+        </div>
+       </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+            <label for="gisTitle2">CÓDIGO GIS</label>
+            <input type="text" name="gis2" class="form-control" id="gisTitle2" value="" >
+        </div>
+      </div>
+  </div>
+
+
+        <div id="respuestaAJAX">
+
+        </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin eliminar</button>
+        <button onclick="eliminarRegistro2( document.getElementById('idTitle2').value )" class="btn btn-danger">Eliminar Registro</button>
+          </div>
+          <!--/form-->
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- fin del modal-->
 
 {% endblock %}
 
@@ -266,15 +326,33 @@
         $("#origenTitle").val(origen);
         $("#lugarTitle").val(lugar);
         $("#notaTitle").val(nota);
+    }
 
-/*
-        document.getElementById("idTitle").setAttribute("value",id);
-        document.getElementById("imeiTitle").setAttribute("value",imei);
-        document.getElementById("serialTitle").setAttribute("value",serial);
-        document.getElementById("gisTitle").setAttribute("value",codigo_gis);
-        document.getElementById("estadoTitle").setAttribute("value",estado);
 
-  */
+
+    function eliminarRegistro(id, imei, serial, codigo_gis){
+
+        $("#idTitle2").val(id);
+        $("#imeiTitle2").val(imei);
+        $("#serialTitle2").val(serial);
+        $("#gisTitle2").val(codigo_gis);
+
+    }
+
+    function eliminarRegistro2(id2){
+
+        $.ajax({
+        data : {'id':id2 },
+        url : '/eliminarGPS/',
+        type : 'get',
+        success: function(data){
+        var html = "<h3>"+data+"</h3>";
+        $('#respuestaAJAX').html(html);
+            location.reload();
+
+        }
+
+        });
     }
 
     </script>

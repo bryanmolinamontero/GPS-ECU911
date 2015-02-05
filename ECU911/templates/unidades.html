@@ -24,11 +24,12 @@
                                 <thead class="btn-primary cabeceraTabla">
                                 <th>ID</th>
                                 <th>INSTITUCIÓN</th>
-                                <th class="col-sm-3">DEPARTAMENTO</th>
-                                <th class="col-sm-2">TIPO</th>
+                                <th class="col-md-1">DEPARTAMENTO</th>
+                                <th class="col-md-1">TIPO</th>
                                 <th>CIUDAD</th>
                                 <th>ESTADO</th>
-                                <th class="col-sm-2">UNIDAD</th>
+                                <th class="col-sm-1">UNIDAD</th>
+                                <th class="col-sm-1">EDIT</th>
                                 </thead>
 
                                 <tbody>
@@ -42,8 +43,11 @@
                                         <td id="id_{{ i.un_ciudad }}">{{i.un_ciudad}}</td>
                                         <td id="id_{{ i.un_estado }}">{{i.un_estado}}</td>
                                         <td id="id_{{ i.un_unidad }}">{{i.un_unidad}}</td>
+                                        <td>
+                                            <span class="btn glyphicon glyphicon-edit" style="color: #418BCA; width: 1px;padding-top:0px;height: 1px;vertical-align: baseline" aria-hidden="true" onclick="editarRegistro({{ i.un_id }} , '{{ i.un_institucion }}' , '{{ i.un_departamento}}'  , '{{ i.un_ciudad }}' , '{{ i.un_tipo }}' , '{{ i.un_estado }}' , '{{ i.un_unidad }}', '{{ i.un_codigo_gis }}', '{{ i.un_persona }}', '{{ i.un_telefono }}' ,  '{{ i.un_notas }}', '{{ i.un_placa }}', '{{ i.un_modelo }}', '{{ i.un_uso }}', '{{ i.un_asignado_sistema | safe}}' )" data-toggle="modal" data-target="#myModal"></span>
+                                            <span class="btn glyphicon glyphicon-remove" style="color: red;width: 1px;padding-top:0px;height: 1px; vertical-align: baseline" aria-hidden="true"></span>
+                                        </td>
                                         </tr>
-
                                 {% endfor %}
                                 </tbody>
                             </table>
@@ -52,11 +56,173 @@
     </div>
 </div>
 
+
+
+
+
+
+<!-- modal de editar-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Editar GPS</h4>
+      </div>
+      <div class="modal-body">
+
+<form method="POST" action="/editarGPS/" class="well"  role="form" >
+
+ <div class="row">
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="idTitle">ID</label>
+            <input type="text" name="id" class="form-control" id="idTitle" readonly="readonly">
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="institucionTitle">Institución</label>
+            <input type="text" name="institucion" class="form-control" id="institucionTitle" >
+          </div>
+      </div>
+
+     <div class="col-md-4">
+         <div class="form-group">
+            <label for="id">Departamento</label>
+            <input type="text" name="departamento" class="form-control" id="departamentoTitle" >
+          </div>
+     </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="ciudadTitle">Ciudad</label>
+            <input type="text" name="ciudad" class="form-control" id="ciudadTitle" >
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="tipoTitle" >Tipo</label>
+            <input type="text"  name="tipo" class="form-control" id="tipoTitle" >
+        </div>
+       </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="estadoTitle" >Estado</label>
+            <input type="text"  name="estado" class="form-control" id="estadoTitle" >
+        </div>
+       </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="unidadTitle">Unidad</label>
+            <input type="text" name="unidad" class="form-control" id="unidadTitle" value="" >
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="form-group">
+            <label for="codigo_gisTitle">Código GIS</label>
+            <input type="text" name="codigo_gis" class="form-control" id="codigo_gisTitle" value="" >
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="personaTitle">Persona</label>
+            <input type="text" name="persona" class="form-control" id="personaTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="telefonoTitle">Teléfono</label>
+            <input type="text" name="telefono" class="form-control" id="telefonoTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="origenTitle">Notas</label>
+            <input type="text" name="notas" class="form-control" id="notasTitle" value="">
+          </div>
+      </div>
+
+  </div>
+
+
+  <div class="row">
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="placaTitle">Placa</label>
+            <input type="text" name="placa" class="form-control" id="placaTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="modeloTitle">Modelo</label>
+            <input type="text" name="modelo" class="form-control" id="modeloTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="usoTitle">Uso</label>
+            <input type="text" name="uso" class="form-control" id="usoTitle" value="">
+          </div>
+      </div>
+
+  </div>
+
+    <div class="row">
+      <div class="col-md-5">
+          <div class="form-group">
+            <label for="asignado_sistemaTitle">Asignado Sistema(YYYY/MM/DD HH:MM:SS)</label>
+            <input type="text" name="asignado_sistema" class="form-control" id="asignado_sistemaTitle" value="">
+          </div>
+      </div>
+<!--
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="asignado_sisstemaTitle">Asignado Sistema</label>
+            <input type="datetime" name="asignado_sistsema" class="form-control" id="asignado_sistemaTitlse" value="">
+          </div>
+      </div>
+ -->
+    </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin editar</button>
+        <button type="submit" class="btn btn-primary">Editar Registro</button>
+          </div>
+          </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- fin del modal editar-->
+
+
 {% endblock %}
 
 {% block js %}
     <script>
-
 
     $("#inicio").removeClass("active");
     $("#unidades").addClass("active");
@@ -92,6 +258,28 @@
         } );
     } );
 
+
+
+    function editarRegistro(id, institucion, departamento, ciudad, tipo, estado, unidad, codigo_gis, persona, telefono, notas, placa, modelo, uso, asignado_sistema){
+
+
+        $("#idTitle").val(id);
+        $("#institucionTitle").val(institucion);
+        $("#departamentoTitle").val(departamento);
+        $("#ciudadTitle").val(ciudad);
+        $("#tipoTitle").val(tipo);
+        $("#estadoTitle").val(estado);
+        $("#unidadTitle").val(unidad);
+        $("#codigo_gisTitle").val(codigo_gis);
+        $("#personaTitle").val(persona);
+        $("#telefonoTitle").val(telefono);
+        $("#notasTitle").val(notas);
+        $("#placaTitle").val(placa);
+        $("#modeloTitle").val(modelo);
+        $("#usoTitle").val(uso);
+        $("#asignado_sistemaTitle").val(asignado_sistema);
+
+    }
 
     </script>
 {% endblock %}

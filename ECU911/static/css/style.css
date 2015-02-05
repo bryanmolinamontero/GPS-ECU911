@@ -19,7 +19,12 @@
 body{
 
 border-top:3px solid #FC3216;
-border-bottom:3px solid #FC3216;
+
+}
+
+.pie{
+    background-color: #222222;
+    border-bottom: 3px solid #FC3216;
 }
 
 .barra{
@@ -62,3 +67,9 @@ th{
 	-o-transform: rotate(-7deg);
 }
 
+
+.radioStyle{
+   font-weight: bold;
+
+
+}

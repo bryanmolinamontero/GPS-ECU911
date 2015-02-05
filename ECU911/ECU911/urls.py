@@ -17,7 +17,14 @@ urlpatterns = patterns('',
 
     url(r'^$', index),
     url(r'^index/$', index),
+
+
+    #LINEAS
+    #****************************
     url(r'^lineas/$', lineas),
+    url(r'^ingresarLinea/$', ingresarLinea),
+
+    #****************************
 
 
     #GPS
@@ -26,6 +33,8 @@ urlpatterns = patterns('',
     url(r'^editarGPS/$', editarGPS),
     url(r'^ingresarGPS/$', ingresarGPS),
     url(r'^submitGPS/$', submitGPS),
+    url(r'^eliminarGPS/$', eliminarGPS),
+
     #****************************
 
     #UNIDADES

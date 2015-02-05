@@ -1,5 +1,5 @@
 # Create your views here.
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render_to_response
 
 from models import *
@@ -9,10 +9,19 @@ def index(request):
     return render_to_response('index.html')
 
 
+
+
+#LINEAS
+#*************************************************************************
+
 def lineas(request):
     registros = gps_lineas.objects.all()
     return render_to_response('lineas.html', {"registros":registros})
 
+
+def ingresarLinea(request):
+    return render_to_response('ingresarLinea.html')
+#*************************************************************************
 
 
 
@@ -60,6 +69,19 @@ def submitGPS(request):
         guardarRegistro.save()
 
         return HttpResponseRedirect('/gps/')
+    else:
+        return HttpResponseRedirect('/gps/')
+
+
+def eliminarGPS(request):
+    if request.GET:
+        try:
+            id =  request.GET['id']
+            eliminar = gps_imei.objects.get(im_id=id)
+            eliminar.delete()
+            return HttpResponse("Registro Eliminado")
+        except Exception as ex:
+            return HttpResponse("No se pudo eliminar")
     else:
         return HttpResponseRedirect('/gps/')
 

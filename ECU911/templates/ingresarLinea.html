@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+    <div class="container cent">
+
+
+            <h1 style="text-align: center; font-weight: bold">Ingreso de LÍNEA</h1>
+
+    <div class="row cent">
+
+      <form method="POST" action="/submitIngresarLinea/" class="well"  role="form" >
+
+  <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" name="id" class="form-control" id="idTitle" readonly="readonly" value="Autogenerado">
+          </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="numeroTitle">Número Telefónico</label>
+            <input type="text" name="numero" class="form-control" id="numeroTitle" required>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div class="form-group">
+            <label for="numeroTitle">Tipo Plan</label>
+            <br/>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio1" id="radio1" value="NORMAL"> NORMAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio1" id="radio2" checked value="TELEMETRÍA"> TELEMETRÍA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio1" id="radio3" value="OTRO"> OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="otro_tipoTitle"></label>
+            <input type="text" name="otro_tipo" class="form-control" id="otro_tipoTitle" readonly="readonly">
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="ipTitle">IP</label>
+            <input type="text" name="ip" class="form-control" id="ipTitle"  required>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="fecha_activacionTitle">Fecha Activación</label>
+            <input type="date" name="fecha_activacion" class="form-control" id="fechaActivacionTitle"  required>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="fecha_solicitudTitle">Fecha Solicitud</label>
+            <input type="date" name="fecha_solicitud" class="form-control" id="fecha_solicitudTitle"  required>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="fecha_activacionTitle">Fecha Anulacion</label>
+            <input type="date" name="fecha_anulacion" class="form-control" id="fecha_anulacionTitle"  required>
+        </div>
+      </div>
+
+  </div>
+
+
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+        <div class="form-group">
+            <label for="numeroTitle">Servicio</label>
+            <br/>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio2" id="radio4" checked value="NORMAL"> GPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio2" id="radio5" value="TELEMETRÍA"> BOTÓN PÁNICO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio2" id="radio6" value="OTRO" > OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="otro_servicioTitle"></label>
+            <input type="text" name="otro_servicio" class="form-control" id="otro_servicioTitle" readonly="readonly">
+        </div>
+    </div>
+  </div>
+
+
+   </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="window.location.href='/gps/'">Cerrar sin Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar Registro</button>
+          </div>
+          </form>
+
+
+        </div>
+
+
+    </div>
+
+{% endblock %}
+
+{% block js %}
+    <script>
+    $("#inicio").removeClass("active");
+    $("#lineas").addClass("active");
+    </script>
+{% endblock %}

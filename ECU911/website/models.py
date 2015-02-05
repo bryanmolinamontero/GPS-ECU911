@@ -4,17 +4,20 @@ from django.db import models
 
 class gps_lineas(models.Model):
     li_id  = models.AutoField(primary_key=True)
-    li_estado = models.CharField(max_length=10, blank=True)
-    li_numero = models.CharField(max_length=20, blank=True)
+    li_numero_linea = models.CharField(max_length=25, blank=True)
     li_tipo = models.CharField(max_length=15, blank=True)
-    li_ip = models.CharField(max_length=15, blank=True)
+    li_ip = models.CharField(max_length=20, blank=True)
+    li_fecha_solicitud = models.DateField(null=True, blank=True)
     li_fecha_activacion = models.DateField(null=True, blank=True)
-    li_fecha_anulacion = models.DateField(null=True, blank=True) # Field renamed to remove unsuitable characters.
+    li_fecha_anulacion = models.DateField(null=True, blank=True)
+    li_estado = models.CharField(max_length=15, blank=True)
+    li_operadora = models.CharField(max_length=15, blank=True)
+    li_servicio = models.CharField(max_length=25, blank=True)
     class Meta:
         db_table = 'gps_lineas'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s ' % (self.li_id, self.li_estado, self.li_numero, self.li_tipo, self.li_ip, self.li_fecha_activacion, self.li_fecha_anulacion)
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s ' % (self.li_id, self.li_numero_linea, self.li_tipo,self.li_ip, self.li_fecha_solicitud, self.li_fecha_activacion, self.li_fecha_anulacion,self.li_estado, self.li_operadora, self.li_servicio)
 
 
 class gps_imei(models.Model):
