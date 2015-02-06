@@ -23,6 +23,13 @@ urlpatterns = patterns('',
     #****************************
     url(r'^lineas/$', lineas),
     url(r'^ingresarLinea/$', ingresarLinea),
+    url(r'^submitIngresarLinea/$', submitIngresarLinea),
+    url(r'^ingresarLinea/$', ingresarLinea),
+
+        #************** VALIDACIONES
+        url(r'^validarIP/$', validarIP ),
+        url(r'^validarNumero/$', validarNumero ),
+        url(r'^validarSim_card/$', validarSim_card ),
 
     #****************************
 

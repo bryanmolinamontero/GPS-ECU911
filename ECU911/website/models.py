@@ -19,6 +19,20 @@ class gps_lineas(models.Model):
     def __unicode__(self):
         return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s ' % (self.li_id, self.li_numero_linea, self.li_tipo,self.li_ip, self.li_fecha_solicitud, self.li_fecha_activacion, self.li_fecha_anulacion,self.li_estado, self.li_operadora, self.li_servicio)
 
+class gps_sim_card (models.Model):
+    si_id = models.AutoField(primary_key=True)
+    si_simcard = models.CharField(max_length=25, blank=True)
+    si_numero_linea = models.CharField(max_length=15, blank=True)
+    si_fecha_inicio = models.DateField(null=True, blank=True)
+    si_fecha_solicitud = models.DateField(null=True, blank=True)
+    si_actual = models.BooleanField(blank=True)
+    li_id = models.ForeignKey('gps_lineas', db_column='li_id')
+    class Meta:
+        db_table = 'gps_sim_card'
+
+    def __unicode__(self):
+        return '%d, %s, %s, %s, %s, %s, %s' % ( self.si_id, self.si_simcard, self.si_numero_linea, self.si_fecha_inicio, self.si_fecha_solicitud, self.si_actual, self.li_id)
+
 
 class gps_imei(models.Model):
     im_id = models.AutoField(primary_key=True)
@@ -58,3 +72,5 @@ class gps_unidades(models.Model):
 
     def __unicode__(self):
         return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.un_id, self.un_institucion, self.un_departamento, self.un_ciudad, self.un_tipo, self.un_estado, self.un_unidad, self.un_codigo_gis, self.un_persona, self.un_telefono, self.un_notas, self.un_placa, self.un_modelo, self.un_uso, self.un_asignado_sistema)
+
+

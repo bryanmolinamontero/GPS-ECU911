@@ -10,7 +10,7 @@
 
     <div class="row cent">
 
-      <form method="POST" action="/submitIngresarLinea/" class="well"  role="form" >
+      <form method="POST" action="/submitIngresarLinea/" class="well"  role="form"  onsubmit="return validarFormulario();">
 
   <div class="row">
       <div class="col-md-6">
@@ -22,10 +22,12 @@
 
       <div class="col-md-6">
         <div class="form-group">
-            <label for="numeroTitle">Número Telefónico</label>
-            <input type="text" name="numero" class="form-control" id="numeroTitle" required>
+            <label for="operadoraTitle">OPERADORA</label>
+            <input type="text" name="operadora" class="form-control" id="operadoraTitle" value="CNT" requidred>
         </div>
       </div>
+
+
   </div>
 
   <div class="row">
@@ -34,16 +36,16 @@
             <label for="numeroTitle">Tipo Plan</label>
             <br/>
             <label class="radio-inline radioStyle">
-            <input type="radio" name="radio1" id="radio1" value="NORMAL"> NORMAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="radio1" id="radio1" value="NORMAL" onchange="desactivarInputOtro1();"> NORMAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label> <div class="visible-xs"><br/></div>
             <label class="radio-inline radioStyle">
-            <input type="radio" name="radio1" id="radio2" checked value="TELEMETRÍA"> TELEMETRÍA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="radio1" id="radio2" checked value="TELEMETRIA" onchange="desactivarInputOtro1();"> TELEMETRÍA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label> <div class="visible-xs"><br/></div>
             <label class="radio-inline radioStyle">
-            <input type="radio" name="radio1" id="radio3" value="OTRO"> OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="radio1" id="radio3" value="OTRO" onchange="activarInputOtro1();"> OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label>
         </div>
-    </div>
+        </div>
 
     <div class="col-md-6">
         <div class="form-group">
@@ -57,9 +59,17 @@
       <div class="col-md-6">
         <div class="form-group">
             <label for="ipTitle">IP</label>
-            <input type="text" name="ip" class="form-control" id="ipTitle"  required>
+            <input type="text" name="ip" class="form-control" id="ipTitle"  required> <div id="estadoIP"></div>
         </div>
       </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="numeroTitle">Número Telefónico</label>
+            <input type="text" name="numero" class="form-control" id="numeroTitle" required> <div id="estadoNumero"></div>
+        </div>
+      </div>
+
   </div>
 
   <div class="row">
@@ -80,7 +90,7 @@
       <div class="col-md-4">
         <div class="form-group">
             <label for="fecha_activacionTitle">Fecha Anulacion</label>
-            <input type="date" name="fecha_anulacion" class="form-control" id="fecha_anulacionTitle"  required>
+            <input type="date" name="fecha_anulacion" class="form-control" id="fecha_anulacionTitle"  readonly="true">
         </div>
       </div>
 
@@ -93,13 +103,13 @@
             <label for="numeroTitle">Servicio</label>
             <br/>
             <label class="radio-inline radioStyle">
-            <input type="radio" name="radio2" id="radio4" checked value="NORMAL"> GPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="radio2" id="radio4" checked value="GPS" onchange="desactivarInputOtro2();"> GPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label> <div class="visible-xs"><br/></div>
             <label class="radio-inline radioStyle">
-            <input type="radio" name="radio2" id="radio5" value="TELEMETRÍA"> BOTÓN PÁNICO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="radio2" id="radio5" value="BOTON PANICO" onchange="desactivarInputOtro2();"> BOTÓN PÁNICO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label> <div class="visible-xs"><br/></div>
             <label class="radio-inline radioStyle">
-            <input type="radio" name="radio2" id="radio6" value="OTRO" > OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="radio2" id="radio6" value="OTRO" onchange="activarInputOtro2();"> OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label>
         </div>
     </div>
@@ -107,19 +117,31 @@
     <div class="col-md-6">
         <div class="form-group">
             <label for="otro_servicioTitle"></label>
-            <input type="text" name="otro_servicio" class="form-control" id="otro_servicioTitle" readonly="readonly">
+            <input type="text" name="otro_servicio" class="form-control" id="otro_servicioTitle"  readonly="readonly">
         </div>
     </div>
   </div>
 
 
-   </div>
-
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" onclick="window.location.href='/gps/'">Cerrar sin Guardar</button>
-        <button type="submit" class="btn btn-primary">Guardar Registro</button>
+    <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="id">SIM CARD</label>
+            <input type="text" name="sim_card" class="form-control" id="sim_cardTitle"> <div id="estadoSim_card"></div>
           </div>
+      </div>
+
+        <div id="respuestaAJAX">
+
+        </div>
+
+    </div>
+
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="window.location.href='/lineas/'">Cerrar sin Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar Registro</button>
+            </div>
+
           </form>
 
 
@@ -134,5 +156,116 @@
     <script>
     $("#inicio").removeClass("active");
     $("#lineas").addClass("active");
+
+    $(document).ready(function() {
+        document.getElementById("ipTitle").focus();
+
+        $("#ipTitle").blur(function() {
+            $.ajax({
+                data : {'ip': $("#ipTitle").val()},
+                url : '/validarIP/',
+                type : 'get',
+                success: function(data){
+                var estado = data;
+                var mensaje = "";
+                    if (estado == "True"){
+                        mensaje="";
+                    }
+                    else{
+                        mensaje="<p style=\"color: red;\">IP REPETIDA<p/>";
+                    }
+                $('#estadoIP').html(mensaje);
+                        //location.reload();
+                    }
+            }); // fin del ajax
+        }); // findel blur de ipTitle
+
+
+        $("#numeroTitle").blur(function() {
+            $.ajax({
+                data : {'numero': $("#numeroTitle").val()},
+                url : '/validarNumero/',
+                type : 'get',
+                success: function(data){
+                var estado = data;
+                var mensaje = "";
+                    if (estado == "True"){
+                        mensaje="";
+                    }
+                    else{
+                        mensaje="<p style=\"color: red;\">NÚMERO REPETIDO<p/>";
+
+                    }
+                $('#estadoNumero').html(mensaje);
+                        //location.reload();
+                    }
+            }); // fin del ajax
+        }); // findel blur de ipTitle
+
+
+
+        $("#sim_cardTitle").blur(function() {
+            $.ajax({
+                data : {'sim_card': $("#sim_cardTitle").val()},
+                url : '/validarSim_card/',
+                type : 'get',
+                success: function(data){
+                var estado = data;
+                var mensaje = "";
+                    if (estado == "True"){
+                        mensaje="";
+                    }
+                    else{
+                        mensaje="<p style=\"color: red;\">SIM CARD REPETIDA<p/>";
+
+                    }
+                $('#estadoSim_card').html(mensaje);
+                        //location.reload();
+                    }
+            }); // fin del ajax
+        }); // findel blur de ipTitle
+
+
+    });
+
+    function activarInputOtro1(){
+        document.getElementById("otro_tipoTitle").readOnly = false;
+        document.getElementById("otro_tipoTitle").focus();
+    }
+
+    function desactivarInputOtro1(){
+        $("#otro_tipoTitle").val("");
+        document.getElementById("otro_tipoTitle").readOnly = true;
+
+    }
+
+    function activarInputOtro2(){
+        document.getElementById("otro_servicioTitle").readOnly = false;
+        document.getElementById("otro_servicioTitle").focus();
+    }
+
+    function desactivarInputOtro2(){
+        $("#otro_servicioTitle").val("");
+        document.getElementById("otro_servicioTitle").readOnly = true;
+
+    }
+
+
+    function validarFormulario(){
+        var estadoSim_card= document.getElementById("estadoSim_card").innerText;
+        var estadoIP= document.getElementById("estadoIP").innerText;
+        var estadoNumero= document.getElementById("estadoNumero").innerText;
+
+        //alert (estadoSim_card);
+        //alert (estadoIP);
+        //alert (estadoNumero);
+
+        if(estadoNumero == "" && estadoIP == "" && estadoNumero == "")
+        {}
+        else
+            return false;
+
+    }
+
     </script>
 {% endblock %}
