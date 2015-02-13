@@ -16,8 +16,9 @@
 {% endblock %}
 
 {%  block body %}
-<div class="container cent">
 
+<div class="container cent">
+<div class="row well titulos">GPS</div>
     <div class="row">
         <button type="button" onclick="window.location.href='/ingresarGPS/'" class="btn btn-primary" data-dismiss="modal">Ingresar Nuevo GPS</button>
         <br/><br/>
@@ -266,7 +267,7 @@
  $(document).ready(function() {
         $('#table_id').dataTable( {
             "order": [],
-            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "aLengthMenu": [[ 25, 50, 75, 100, -1], [ 25, 50, 75, 100, "Todos"]],
             "language": {
                 "sProcessing":     "Procesando...",
                 "sLengthMenu":     "Mostrar _MENU_ registros",

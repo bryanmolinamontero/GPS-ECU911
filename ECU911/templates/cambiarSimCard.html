@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="container cent">
+
+  <div class="row titulos">CAMBIAR DE SIM CARD</div>
+    <br/>
+
+   <div class="row cent">
+
+            <form method="POST" action="/submitCambiarSimCard/" class="well"  role="form" >
+
+ <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="lineaTitle">NÚMERO DE LÍNEA</label>
+            <input type="text" name="linea" class="form-control" id="lineaTitle" readonly="readonly" value="{{ linea }}">
+          </div>
+      </div>
+      <div class="col-md-6"></div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="sim_cardTitle">SIM CARD NUEVO</label>
+            <input type="text" name="sim_card" class="form-control" id="sim_cardTitle" required>
+        </div>
+      </div>
+  </div>
+
+
+  <div class="row">
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="fecha_inicioTitle">FECHA DE INICIO</label>
+            <input type="date" name="fecha_inicio" class="form-control" id="fecha_inicioTitle"  required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="fecha_solicitudTitle">FECHA DE SOLICITUD</label>
+            <input type="date" name="fecha_solicitud" class="form-control" id="fecha_solicitudTitle"  required>
+        </div>
+      </div>
+
+  </div>
+
+   <div class="row">
+       <div class="col-md-6">
+
+            <div class="form-group" style="margin-bottom: 0px;">
+                <label for="fecha_solicitudTitle">ESTADO</label>
+            </div>
+
+        <div class="form-group">
+            <label class="checkbox-inline">
+                <input type="checkbox" name="estado" value="ACTUAL"> ACTUAL
+            </label>
+        </div>
+      </div>
+   </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="window.location.href='/lineas/'">Cerrar sin Guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar Registro</button>
+          </div>
+          </form>
+
+
+        </div>
+
+</div>
+
+
+{% endblock %}
+
+{% block js %}
+    <script>
+
+    $("#inicio").removeClass("active");
+    $("#lineas").addClass("active");
+    document.getElementById("sim_cardTitle").focus();
+
+    </script>
+{% endblock %}

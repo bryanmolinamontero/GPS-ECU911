@@ -127,7 +127,7 @@
       <div class="col-md-6">
           <div class="form-group">
             <label for="id">SIM CARD</label>
-            <input type="text" name="sim_card" class="form-control" id="sim_cardTitle"> <div id="estadoSim_card"></div>
+            <input type="text" name="sim_card" class="form-control" id="sim_cardTitle" required> <div id="estadoSim_card"></div>
           </div>
       </div>
 
@@ -202,7 +202,9 @@
             }); // fin del ajax
         }); // findel blur de ipTitle
 
-
+        $("#fechaActivacionTitle").blur(function() {
+             $("#fecha_solicitudTitle").val($("#fechaActivacionTitle").val());
+        }); // findel blur de fecha activacion
 
         $("#sim_cardTitle").blur(function() {
             $.ajax({

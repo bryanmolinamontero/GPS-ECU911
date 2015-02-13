@@ -10,7 +10,9 @@
         <script type="text/javascript" charset="utf8" src="/static/DataTables/media/js/jquery.dataTables.js"></script>
 {% endblock %}
 {%  block body %}
+
 <div class="container cent">
+<div class="row well titulos">LÍNEAS CNT</div>
     <div class="row">
         <button type="button" onclick="window.location.href='/ingresarLinea/'" class="btn btn-primary" data-dismiss="modal">Ingresar Nueva Línea</button>
         <br/><br/>
@@ -38,9 +40,10 @@
                                         <td>{{i.li_fecha_activacion | safe}}</td>
                                         <td>{{i.li_estado}}</td>
                                         <td>
-                                            <span class="btn glyphicon glyphicon-pencil" data-tool="Editar" style="color: #418BCA; width: 1px;height: 1px; padding-top:0px;vertical-align: baseline" aria-hidden="true" onclick="editarRegistro({{ i.un_id }} , '{{ i.un_institucion }}' , '{{ i.un_departamento}}'  , '{{ i.un_ciudad }}' , '{{ i.un_tipo }}' , '{{ i.un_estado }}' , '{{ i.un_unidad }}', '{{ i.un_codigo_gis }}', '{{ i.un_persona }}', '{{ i.un_telefono }}' ,  '{{ i.un_notas }}', '{{ i.un_placa }}', '{{ i.un_modelo }}', '{{ i.un_uso }}', '{{ i.un_asignado_sistema | safe}}' )" data-toggle="modal" data-target="#myModal" title="Visualizar/Editar"></span>
-                                            <span class="btn glyphicon glyphicon-sound-dolby" style="color: #b66943;width: 1px;height: 1px; padding-top: 0px; vertical-align: baseline" aria-hidden="true" title="Cambiar SIM CARD"></span>
-                                            <span class="btn glyphicon glyphicon-book" style="color: gray;width: 1px;height: 1px; padding-top: 0px; vertical-align: baseline" aria-hidden="true" title="Ver Historial SIM CARD"></span>
+                                            <span class="btn glyphicon glyphicon-pencil" data-tool="Editar" style="color: #418BCA; width: 1px;height: 1px; padding-top:0px;vertical-align: baseline" aria-hidden="true" onclick="editarRegistro({{ i.li_id }} , '{{ i.li_operadora }}' , '{{ i.li_tipo }}' , '{{ i.li_ip }}' , '{{ i.li_numero_linea }}' , '{{ i.li_fecha_activacion |safe }}' , '{{ i.li_fecha_solicitud | safe}}' , '{{ i.li_fecha_anulacion | safe }}' , '{{ i.li_servicio }}', '{{ i.li_estado}}') " data-toggle="modal" data-target="#myModal" title="Visualizar/Editar"></span>
+                                            <span class="btn glyphicon glyphicon-sound-dolby" style="color: #b66943;width: 1px;height: 1px; padding-top: 0px; vertical-align: baseline" aria-hidden="true" title="Cambiar SIM CARD" onclick=location.href="/cambiarSimCard/{{i.li_numero_linea}}"></span>
+                                            <span class="btn glyphicon glyphicon-book" style="color: gray;width: 1px;height: 1px; padding-top: 0px; vertical-align: baseline" aria-hidden="true" title="Ver Historial SIM CARD" onclick=location.href="/historialSimCard/{{i.li_id}}"></span>
+                                            <span class="btn glyphicon glyphicon-remove" style="color: indianred;width: 1px;height: 1px; padding-top: 0px; vertical-align: baseline" aria-hidden="true" title="ANULAR SIM CARD" onclick="anularLinea( {{ i.li_id }} , '{{ i.li_numero_linea }}' , '{{ i.li_tipo }}' ,'{{ i.li_ip }}');" data-toggle="modal" data-target="#myModal2"></span>
                                         </td>
                                         </tr>
                                     {% endfor %}
@@ -49,6 +52,226 @@
                         </div>
     </div>
 </div>
+
+
+
+
+
+
+    <!-- modal de editar-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Editar Línea</h4>
+      </div>
+      <div class="modal-body">
+            <form method="POST" action="/editarLinea/" class="well"  role="form" >
+                <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" name="id" class="form-control" id="idTitle" readonly="readonly" >
+          </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="operadoraTitle">OPERADORA</label>
+            <input type="text" name="operadora" class="form-control" id="operadoraTitle"  required>
+        </div>
+      </div>
+
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div class="form-group">
+            <label for="numeroTitle">Tipo Plan</label>
+            <br/>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio1" id="radio1" value="NORMAL" onchange="desactivarInputOtro1();"> NORMAL&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio1" id="radio2" value="TELEMETRIA" onchange="desactivarInputOtro1();"> TELEMETRÍA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio1" id="radio3" value="OTRO" onchange="activarInputOtro1();"> OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+        </div>
+   </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="otro_tipoTitle"></label>
+            <input type="text" name="otro_tipo" class="form-control" id="otro_tipoTitle">
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="ipTitle">IP</label>
+            <input type="text" name="ip" class="form-control" id="ipTitle"  required> <div id="estadoIP"></div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="numeroTitle">Número Telefónico</label>
+            <input type="text" name="numero" class="form-control" id="numeroTitle" required readonly="true"> <div id="estadoNumero"></div>
+        </div>
+      </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="fecha_activacionTitle">Fecha Activación</label>
+            <input type="date" name="fecha_activacion" class="form-control" id="fechaActivacionTitle"  required>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="fecha_solicitudTitle">Fecha Solicitud</label>
+            <input type="date" name="fecha_solicitud" class="form-control" id="fecha_solicitudTitle"  required>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="fecha_activacionTitle">Fecha Anulacion</label>
+            <input type="date" name="fecha_anulacion" class="form-control" id="fecha_anulacionTitle" >
+        </div>
+      </div>
+
+  </div>
+
+
+    <div class="row">
+        <div class="col-md-6 col-xs-12">
+        <div class="form-group">
+            <label for="numeroTitle">Servicio</label>
+            <br/>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio2" id="radio4" checked value="GPS" onchange="desactivarInputOtro2();"> GPS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio2" id="radio5" value="BOTON PANICO" onchange="desactivarInputOtro2();"> BOTÓN PÁNICO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label> <div class="visible-xs"><br/></div>
+            <label class="radio-inline radioStyle">
+            <input type="radio" name="radio2" id="radio6" value="OTRO" onchange="activarInputOtro2();"> OTRO&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </label>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="form-group">
+            <label for="otro_servicioTitle"></label>
+            <input type="text" name="otro_servicio" class="form-control" id="otro_servicioTitle" >
+        </div>
+    </div>
+  </div>
+
+
+    <div class="row">
+
+        <!--
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="id">SIM CARD</label>
+            <input type="text" name="sim_card" class="form-control" id="sim_cardTitle" required> <div id="estadoSim_card"></div>
+          </div>
+      </div>
+      ---->
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="inputEstadoTitle">ESTADO</label>
+                <input type="text" name="inputEstado" class="form-control" id="inputEstadoTitle"  readonly="true">
+          </div>
+      </div>
+        <div id="respuestaAJAX">
+        </div>
+    </div>
+         <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin Guardar</button>
+          <button type="submit" class="btn btn-primary">Guardar Registro</button>
+         </div>
+       </form>
+      </div><!-- fin del modal body-->
+    </div><!-- fin del modal content-->
+  </div><!-- fin del modal dialog -->
+</div>
+<!-- fin del modal editar-->
+
+
+
+<!-- modal de anular linea-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Anular Línea</h4>
+      </div>
+      <div class="modal-body">
+            <form method="POST" action="/anularLinea/" class="well"  role="form" >
+                <div class="row">
+                  <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="id">ID</label>
+                        <input type="text" name="id" class="form-control" id="idTitle2" readonly="readonly" >
+                      </div>
+                  </div>
+                </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="ipTitle2">IP</label>
+            <input type="text" name="ip2" class="form-control" id="ipTitle2"  required>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="numeroTitle2">Número Telefónico</label>
+            <input type="text" name="numero2" class="form-control" id="numeroTitle2" required>
+        </div>
+      </div>
+
+   </div>
+   <div class="row">
+       <div class="col-md-6">
+        <div class="form-group">
+            <label for="fecha_anulacionTitle2">Fecha de Anulación</label>
+            <input type="date" name="fecha_anulacion2" class="form-control" id="fecha_anulacionTitle2" required>
+        </div>
+      </div>
+   </div>
+
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin Anular</button>
+            <button type="submit" class="btn btn-danger">Anular Línea</button>
+        </div>
+
+        </form>
+      </div><!-- fin del modal body-->
+    </div><!-- fin del modal content-->
+  </div><!-- fin del modal dialog -->
+</div>
+
+
+
+
+<!-- fin del anular linea-->
+
 
 {% endblock %}
 
@@ -60,7 +283,7 @@
 
         $('#table_id').dataTable( {
             "order": [],
-            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            "aLengthMenu": [[ 25, 50, 75, 100, -1], [ 25, 50, 75, 100, "Todos"]],
             "language": {
                 "sProcessing":     "Procesando...",
                 "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -89,5 +312,102 @@
     } );
     $("#inicio").removeClass("active");
     $("#lineas").addClass("active");
+
+
     </script>
+
+    <script>
+    function editarRegistro(id, operadora, tipo, ip, numero_linea, fecha_activacion, fecha_solicitud, fecha_anulacion, servicio, estado){
+
+        $("#inputEstadoTitle").val(estado);
+
+        $("#idTitle").val(id);
+        $("#operadoraTitle").val(operadora);
+        $("#otro_tipoTitle").prop('readonly', true);
+        $("#otro_tipoTitle").val("");
+        $("#radio3").prop("uncheck", true);
+
+        if (tipo=="NORMAL")
+            $("#radio1").prop("checked", true);
+        else{
+            if(tipo=="TELEMETRIA")
+                $("#radio2").prop("checked", true);
+            else{
+                if(tipo=="OTRO")
+                    $("#radio3").prop("checked", true);
+                else{
+                    $("#otro_tipoTitle").prop('readonly', false);
+                    $("#radio3").prop("checked", true);
+                    $("#otro_tipoTitle").val(tipo);
+                }
+            }
+         }
+
+
+        $("#otro_servicioTitle").prop('readonly', true);
+        $("#otro_servicioTitle").val("");
+        $("#radio6").prop("uncheck", true);
+
+        if (servicio=="GPS")
+            $("#radio4").prop("checked", true);
+        else{
+            if(servicio=="BOTON PANICO")
+                $("#radio5").prop("checked", true);
+            else{
+                if(servicio=="OTRO")
+                    $("#radio6").prop("checked", true);
+                else{
+                    $("#otro_servicioTitle").prop('readonly', false);
+                    $("#radio6").prop("checked", true);
+                    $("#otro_servicioTitle").val(servicio);
+                }
+            }
+         }
+
+        $("#ipTitle").val(ip);
+        $("#numeroTitle").val(numero_linea);
+        $("#fechaActivacionTitle").val(fecha_activacion);
+        $("#fecha_solicitudTitle").val(fecha_solicitud);
+        $("#fecha_anulacionTitle").val(fecha_anulacion);
+
+
+    }
+
+
+    function activarInputOtro1(){
+        document.getElementById("otro_tipoTitle").readOnly = false;
+        document.getElementById("otro_tipoTitle").focus();
+    }
+
+    function desactivarInputOtro1(){
+        $("#otro_tipoTitle").val("");
+        document.getElementById("otro_tipoTitle").readOnly = true;
+
+    }
+
+
+    function activarInputOtro2(){
+        document.getElementById("otro_servicioTitle").readOnly = false;
+        document.getElementById("otro_servicioTitle").focus();
+    }
+
+    function desactivarInputOtro2(){
+        $("#otro_servicioTitle").val("");
+        document.getElementById("otro_servicioTitle").readOnly = true;
+
+    }
+
+    function anularLinea(id, numero_linea, tipo, ip){
+        $("#idTitle2").val(id);
+        $("#ipTitle2").val(ip);
+        $("#numeroTitle2").val(numero_linea);
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+        $("#fecha_anulacionTitle2").val(today);
+
+    }
+    </script>
+
 {% endblock %}

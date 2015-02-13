@@ -15,14 +15,8 @@
 {% endblock %}
 
 {% block body %}
-
   <div class="container cent">
-  <div class="row well titulos">UNIDADES</div>
-
-  <div class="row">
-        <button type="button" onclick="window.location.href='/ingresarUnidad/'" class="btn btn-primary" data-dismiss="modal">Ingresar Nueva Unidad</button>
-        <br/><br/>
-    </div>
+  <div class="row well titulos">HISTORIAL DE SIM CARD</div>
    <div class="row">
 
     <div class="table-responsive">
@@ -30,30 +24,27 @@
 
                                 <thead class="btn-primary cabeceraTabla">
                                 <th>ID</th>
-                                <th>INSTITUCIÓN</th>
-                                <th class="col-md-1">DEPARTAMENTO</th>
-                                <th class="col-md-1">TIPO</th>
-                                <th>CIUDAD</th>
-                                <th>ESTADO</th>
-                                <th class="col-sm-1">UNIDAD</th>
-                                <th class="col-sm-1">EDIT</th>
+                                <th>LÍNEA #</th>
+                                <th class="col-md-1">SIMCARD</th>
+                                <th>FECHA SOLICITUD</th>
+                                <th>FECHA INICIO</th>
+                                <th>ACTUAL</th>
                                 </thead>
 
                                 <tbody>
 
                                     {% for i in registros %}
                                         <tr>
-                                        <td id="id_{{ i.un_id }}">{{i.un_id}}</td>
-                                        <td id="id_{{ i.un_institucion }}">{{i.un_institucion}}</td>
-                                        <td id="id_{{ i.un_departamento }}">{{i.un_departamento}}</td>
-                                        <td id="id_{{ i.un_tipo }}">{{i.un_tipo}}</td>
-                                        <td id="id_{{ i.un_ciudad }}">{{i.un_ciudad}}</td>
-                                        <td id="id_{{ i.un_estado }}">{{i.un_estado}}</td>
-                                        <td id="id_{{ i.un_unidad }}">{{i.un_unidad}}</td>
-                                        <td>
-                                            <span class="btn glyphicon glyphicon-edit" style="color: #418BCA; width: 1px;padding-top:0px;height: 1px;vertical-align: baseline" aria-hidden="true" onclick="editarRegistro({{ i.un_id }} , '{{ i.un_institucion }}' , '{{ i.un_departamento}}'  , '{{ i.un_ciudad }}' , '{{ i.un_tipo }}' , '{{ i.un_estado }}' , '{{ i.un_unidad }}', '{{ i.un_codigo_gis }}', '{{ i.un_persona }}', '{{ i.un_telefono }}' ,  '{{ i.un_notas | safe }}', '{{ i.un_placa }}', '{{ i.un_modelo }}', '{{ i.un_uso }}', '{{ i.un_asignado_sistema | safe}}' )" data-toggle="modal" data-target="#myModal"></span>
+                                        <td id="id_{{ i.si_id }}">{{i.si_id}}</td>
+                                        <td id="id_{{ i.si_numero_linea }}">{{i.si_numero_linea}}</td>
+                                        <td id="id_{{ i.si_simcard }}">{{i.si_simcard}}</td>
+                                        <td id="id_{{ i.si_fecha_solicitud }}">{{i.si_fecha_solicitud}}</td>
+                                        <td id="id_{{ i.si_fecha_inicio }}">{{i.si_fecha_inicio}}</td>
+                                        <td id="id_{{ i.si_actual }}">{{i.si_actual}}</td>
+                                        <!--<td>
+                                            <span class="btn glyphicon glyphicon-edit" style="color: #418BCA; width: 1px;padding-top:0px;height: 1px;vertical-align: baseline" aria-hidden="true" onclick="editarRegistro({{ i.un_id }} , '{{ i.un_institucion }}' , '{{ i.un_departamento}}'  , '{{ i.un_ciudad }}' , '{{ i.un_tipo }}' , '{{ i.un_estado }}' , '{{ i.un_unidad }}', '{{ i.un_codigo_gis }}', '{{ i.un_persona }}', '{{ i.un_telefono }}' ,  '{{ i.un_notas }}', '{{ i.un_placa }}', '{{ i.un_modelo }}', '{{ i.un_uso }}', '{{ i.un_asignado_sistema | safe}}' )" data-toggle="modal" data-target="#myModal"></span>
                                             <span class="btn glyphicon glyphicon-remove" style="color: red;width: 1px;padding-top:0px;height: 1px; vertical-align: baseline" aria-hidden="true"></span>
-                                        </td>
+                                        </td>-->
                                         </tr>
                                 {% endfor %}
                                 </tbody>
@@ -63,17 +54,22 @@
     </div>
 </div>
 
+
+
+
+
+
 <!-- modal de editar-->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Editar Unidad</h4>
+        <h4 class="modal-title" id="myModalLabel">Editar GPS</h4>
       </div>
       <div class="modal-body">
 
-<form method="POST" action="/editarUnidad/" class="well"  role="form" >
+<form method="POST" action="/editarGPS/" class="well"  role="form" >
 
  <div class="row">
       <div class="col-md-4">
@@ -206,6 +202,7 @@
  -->
     </div>
 
+
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin editar</button>
         <button type="submit" class="btn btn-primary">Editar Registro</button>
@@ -226,12 +223,12 @@
     <script>
 
     $("#inicio").removeClass("active");
-    $("#unidades").addClass("active");
+    $("#lineas").addClass("active");
 
     $(document).ready(function() {
         $('#table_id2').dataTable( {
             "order": [],
-            "aLengthMenu": [[ 25, 50, 75, 100, -1], [ 25, 50, 75, 100, "Todos"]],
+            "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
             "language": {
                 "sProcessing":     "Procesando...",
                 "sLengthMenu":     "Mostrar _MENU_ registros",
@@ -259,7 +256,11 @@
         } );
     } );
 
+
+
     function editarRegistro(id, institucion, departamento, ciudad, tipo, estado, unidad, codigo_gis, persona, telefono, notas, placa, modelo, uso, asignado_sistema){
+
+
         $("#idTitle").val(id);
         $("#institucionTitle").val(institucion);
         $("#departamentoTitle").val(departamento);

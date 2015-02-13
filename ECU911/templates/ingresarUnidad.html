@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+<div class="container cent">
+<h1 style="text-align: center; font-weight: bold">Ingreso de LÍNEA</h1>
+<div class="row cent">
+ <form method="POST" action="/editarUnidad/" class="well"  role="form" >
+
+ <div class="row">
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="idTitle">ID</label>
+            <input type="text" name="id" class="form-control" id="idTitle" readonly="readonly">
+          </div>
+      </div>
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="institucionTitle">Institución</label>
+            <input type="text" name="institucion" class="form-control" id="institucionTitle" >
+          </div>
+      </div>
+
+     <div class="col-md-4">
+         <div class="form-group">
+            <label for="id">Departamento</label>
+            <input type="text" name="departamento" class="form-control" id="departamentoTitle" >
+          </div>
+     </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="ciudadTitle">Ciudad</label>
+            <input type="text" name="ciudad" class="form-control" id="ciudadTitle" >
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="tipoTitle" >Tipo</label>
+            <input type="text"  name="tipo" class="form-control" id="tipoTitle" >
+        </div>
+       </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="estadoTitle" >Estado</label>
+            <input type="text"  name="estado" class="form-control" id="estadoTitle" >
+        </div>
+       </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+            <label for="unidadTitle">Unidad</label>
+            <input type="text" name="unidad" class="form-control" id="unidadTitle" value="" >
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="form-group">
+            <label for="codigo_gisTitle">Código GIS</label>
+            <input type="text" name="codigo_gis" class="form-control" id="codigo_gisTitle" value="" >
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="personaTitle">Persona</label>
+            <input type="text" name="persona" class="form-control" id="personaTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="telefonoTitle">Teléfono</label>
+            <input type="text" name="telefono" class="form-control" id="telefonoTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="origenTitle">Notas</label>
+            <input type="text" name="notas" class="form-control" id="notasTitle" value="">
+          </div>
+      </div>
+
+  </div>
+
+
+  <div class="row">
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="placaTitle">Placa</label>
+            <input type="text" name="placa" class="form-control" id="placaTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="modeloTitle">Modelo</label>
+            <input type="text" name="modelo" class="form-control" id="modeloTitle" value="">
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="usoTitle">Uso</label>
+            <input type="text" name="uso" class="form-control" id="usoTitle" value="">
+          </div>
+      </div>
+
+  </div>
+
+    <div class="row">
+      <div class="col-md-5">
+          <div class="form-group">
+            <label for="asignado_sistemaTitle">Asignado Sistema(DD/MM/YYYY HH:MM:SS)</label>
+            <input type="datetime-local" value="1996-12-19T13:15:30" name="asignado_sistema" class="form-control" id="asignado_sistemaTitle" value="">
+          </div>
+      </div>
+<!--
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="asignado_sisstemaTitle">Asignado Sistema</label>
+            <input type="datetime" name="asignado_sistsema" class="form-control" id="asignado_sistemaTitlse" value="">
+          </div>
+      </div>
+ -->
+    </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin editar</button>
+        <button type="submit" class="btn btn-primary">Editar Registro</button>
+          </div>
+ </form>
+
+</div>
+    </div>
+    
+{% endblock %}
+
+
+
+{% block js %}
+
+{% endblock %}

@@ -64,6 +64,62 @@ def submitIngresarLinea(request):
     else:
         return HttpResponseRedirect('/lineas/')
 
+def anularLinea(request):
+    if request.POST:
+        id=request.POST['id']
+        fecha_anulacion=request.POST['fecha_anulacion2']
+
+        print "**************"
+        print id
+        print fecha_anulacion
+        print "**************"
+        anularRegistro = gps_lineas.objects.filter(li_id=id).update(li_fecha_anulacion = fecha_anulacion, li_estado="ANULADA")
+        return HttpResponseRedirect('/lineas/')
+    else:
+        return HttpResponseRedirect('/lineas/')
+
+def editarLinea(request):
+    if request.POST:
+        id = request.POST['id']
+        operadora=request.POST['operadora']
+        tipo_plan = request.POST['radio1']
+        otro_tipo = request.POST['otro_tipo']
+        ip = request.POST['ip']
+        numero = request.POST['numero']
+        fecha_activacion = request.POST['fecha_activacion']
+        fecha_solicitud = request.POST['fecha_solicitud']
+        fecha_anulacion = request.POST['fecha_anulacion']
+        tipo_servicio = request.POST['radio2']
+        otro_servicio = request.POST['otro_servicio']
+        #sim_card = request.POST['sim_card']
+        tipo_planFinal = ""
+        tipo_servicioFinal = ""
+        if otro_tipo == "":
+            tipo_planFinal=tipo_plan
+        else:
+            tipo_planFinal = otro_tipo
+
+        if otro_servicio =="":
+            tipo_servicioFinal=tipo_servicio
+        else:
+            tipo_servicioFinal = otro_servicio
+
+        '''print "*********************"
+        print id #no se modificada
+        print operadora
+        print tipo_planFinal
+        print ip
+        print numero #tampoco no se modfica
+        print fecha_activacion
+        print fecha_solicitud
+        print fecha_anulacion
+        print tipo_servicioFinal
+        print "*********************"'''
+        gps_lineas.objects.filter(li_id = id).update(li_tipo = tipo_planFinal, li_ip = ip , li_fecha_solicitud = fecha_solicitud, li_fecha_activacion = fecha_activacion , li_fecha_anulacion = fecha_anulacion , li_operadora = operadora, li_servicio = tipo_servicioFinal)
+        return HttpResponseRedirect('/lineas/')
+    else:
+        return HttpResponseRedirect('/lineas/')
+
 
     #********************** VALIDACIONES
 def validarIP(request):
@@ -200,5 +256,55 @@ def eliminarGPS(request):
 def unidades(request):
     registrosUnidades = gps_unidades.objects.all().order_by("un_id")
     return render_to_response('unidades.html', {"registros":registrosUnidades})
+
+def ingresarUnidad(request):
+    return render_to_response('ingresarUnidad.html')
+
 #***************************************************************************
+
+
+#HISTORIAL SIM CARD
+def historialSimCard(request, idSimCard):
+    registrosSimCard = gps_sim_card.objects.filter(li_id=idSimCard)
+    return render_to_response('historialSimCard.html', {"registros":registrosSimCard})
+
+def cambiarSimCard(request, numeroLinea):
+    registrodeLinea = gps_lineas.objects.filter(li_numero_linea=numeroLinea)
+    cont = 0
+    for i in registrodeLinea:
+        cont = cont + 1
+    if cont>0:
+        return render_to_response('cambiarSimCard.html', {"linea":numeroLinea})
+    else:
+        return HttpResponseRedirect('/lineas/')
+
+
+def submitCambiarSimCard(request):
+    if request.POST:
+        linea = request.POST['linea']
+        sim_card = request.POST['sim_card']
+        fecha_inicio = request.POST['fecha_inicio']
+        fecha_solicitud = request.POST['fecha_solicitud']
+        estado="False"
+
+        try:
+            estado = request.POST['estado']
+        except:
+                False
+
+        if estado=="False":
+            estado = False
+        else:
+            estado = True
+            gps_sim_card.objects.filter(si_numero_linea = linea).update(si_actual = False)
+
+
+        obtenerId = gps_lineas.objects.get(li_numero_linea = linea)
+        guardarRegistroGpsSimCard = gps_sim_card(si_simcard = sim_card ,si_numero_linea = linea  ,si_fecha_inicio = fecha_inicio, si_fecha_solicitud = fecha_solicitud, si_actual = estado, li_id = obtenerId)
+        guardarRegistroGpsSimCard.save()
+
+        return HttpResponseRedirect('/lineas/')
+
+    else:
+        return HttpResponseRedirect('/lineas/')
 

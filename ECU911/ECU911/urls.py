@@ -25,6 +25,8 @@ urlpatterns = patterns('',
     url(r'^ingresarLinea/$', ingresarLinea),
     url(r'^submitIngresarLinea/$', submitIngresarLinea),
     url(r'^ingresarLinea/$', ingresarLinea),
+    url(r'^editarLinea/$', editarLinea),
+    url(r'^anularLinea/$', anularLinea),
 
         #************** VALIDACIONES
         url(r'^validarIP/$', validarIP ),
@@ -47,6 +49,17 @@ urlpatterns = patterns('',
     #UNIDADES
     #*****************************
     url(r'^unidades/$', unidades),
+    url(r'^ingresarUnidad/$', ingresarUnidad),
+    #*****************************
+
+
+
+    #SIMCARD
+    #*****************************
+    #url(r'^historialSimCard/$', historialSimCard),
+    url(r'^cambiarSimCard/(?P<numeroLinea>\w+)/$',cambiarSimCard),
+    url(r'^submitCambiarSimCard/$',submitCambiarSimCard),
+    url(r'^historialSimCard/(?P<idSimCard>\d+)/$',historialSimCard),
     #*****************************
 
 

@@ -51,12 +51,61 @@ class gps_imei(models.Model):
         return '%d, %s, %s, %s, %s, %s, %s, %s' % (self.im_id, self.im_imei, self.im_serial, self.im_codigo_gis, self.im_estado, self.im_origen, self.lugar, self.im_nota)
 
 
-class gps_unidades(models.Model):
+
+class gps_instituciones(models.Model):
+    in_id = models.AutoField(primary_key=True)
+    in_nombre = models.CharField(max_length=150, blank=True)
+    class Meta:
+        db_table = 'gps_instituciones'
+
+    def __unicode__(self):
+        return '%d, %s' % (self.in_id, self.in_nombre)
+
+
+class gps_tipo_unidades(models.Model):
+    ti_id = models.AutoField(primary_key=True)
+    ti_clase_unidad = models.CharField(max_length=150, blank=True)
+    ti_nombre = models.CharField(max_length=150, blank=True)
+    class Meta:
+        db_table = 'gps_tipo_unidades'
+
+    def __unicode__(self):
+        return '%d, %s, %s' % (self.ti_id, self.ti_clase_unidad , self.ti_nombre)
+
+class gps_departamento(models.Model):
+    de_id = models.AutoField(primary_key=True)
+    de_departmentId_gis = models.CharField(max_length=40, blank=True)
+    de_departmentName = models.CharField(max_length=250, blank=True)
+    de_EncargadoName = models.CharField(max_length=200, blank=True)
+    de_departmentdireccion = models.CharField(max_length=250, blank=True)
+    de_departmentPhone = models.CharField(max_length=15, blank=True)
+    de_departmentFax = models.CharField(max_length=20, blank=True)
+    de_departmentEmail = models.CharField(max_length=50, blank=True)
+    de_notas = models.CharField(max_length=250, blank=True)
+
+    class Meta:
+        db_table = 'gps_departamento'
+
+    def __unicode__(self):
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s' % (self.de_id, self.de_departmentId_gis, self.de_departmentName, self.de_EncargadoName, self.de_departmentdireccion, self.de_departmentPhone, self.de_departmentFax, self.de_departmentEmail, self.de_notas)
+
+
+class gps_cantones(models.Model):
+    ca_id = models.AutoField(primary_key=True)
+    ca_nombre = models.CharField(max_length=15, blank=True)
+    ca_provincia = models.CharField(max_length=15, blank=True)
+
+    class Meta:
+        db_table = 'gps_cantones'
+
+    def __unicode__(self):
+        return '%d, %s, %s' % (self.ca_id, self.ca_nombre, self.ca_provincia)
+
+
+'''class gps_unidades(models.Model):
     un_id = models.AutoField(primary_key=True)
-    un_institucion = models.CharField(max_length=50, blank=True)
     un_departamento = models.CharField(max_length=100, blank=True)
-    un_ciudad = models.CharField(max_length=50, blank=True)
-    un_tipo = models.CharField(max_length=50, blank=True)
+    un_ciudad = models.CharField(max_length=50, blank=True)--
     un_estado = models.CharField(max_length=50, blank=True)
     un_unidad = models.CharField(max_length=100, blank=True)
     un_codigo_gis = models.CharField(max_length=100, blank=True)
@@ -67,10 +116,10 @@ class gps_unidades(models.Model):
     un_modelo = models.CharField(max_length=100, blank=True)
     un_uso = models.CharField(max_length=250, blank=True)
     un_asignado_sistema = models.DateTimeField(null=True, blank=True)
+
     class Meta:
         db_table = 'gps_unidades'
 
     def __unicode__(self):
         return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.un_id, self.un_institucion, self.un_departamento, self.un_ciudad, self.un_tipo, self.un_estado, self.un_unidad, self.un_codigo_gis, self.un_persona, self.un_telefono, self.un_notas, self.un_placa, self.un_modelo, self.un_uso, self.un_asignado_sistema)
-
-
+'''

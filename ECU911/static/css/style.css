@@ -1,11 +1,8 @@
 
 
-
 .header{
 
-
 }
-
 
 .headerTitle{
     padding-left:1px;
@@ -70,6 +67,15 @@ th{
 
 .radioStyle{
    font-weight: bold;
+}
 
 
+.titulos{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+
+footer{
 }
