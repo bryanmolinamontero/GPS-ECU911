@@ -50,9 +50,16 @@ urlpatterns = patterns('',
     #*****************************
     url(r'^unidades/$', unidades),
     url(r'^ingresarUnidad/$', ingresarUnidad),
+    url(r'^submitIngresarUnidad/$', submitIngresarUnidad),
+    url(r'^cargarComboBoxInstituciones/$', cargarComboBoxInstituciones),
+    url(r'^cargarComboBoxDepartamentos/$', cargarComboBoxDepartamentos),
+    url(r'^cargarComboBoxCiudades/$', cargarComboBoxCiudades),
+    url(r'^cargarComboBoxTipoDeUnidad/$', cargarComboBoxTipoDeUnidad),
+    url(r'^editarUnidad/$', editarUnidad),
+    url(r'^anularUnidad/$', anularUnidad),
+
+    #url(r'^editarUnidad/$', editarUnidad),
     #*****************************
-
-
 
     #SIMCARD
     #*****************************
@@ -61,6 +68,13 @@ urlpatterns = patterns('',
     url(r'^submitCambiarSimCard/$',submitCambiarSimCard),
     url(r'^historialSimCard/(?P<idSimCard>\d+)/$',historialSimCard),
     #*****************************
+
+
+    #ACTAS
+    #********************************
+    url(r'^ingresarActa/$', ingresarActa),
+
+
 
 
 )

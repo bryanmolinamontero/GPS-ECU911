@@ -8,28 +8,38 @@
 
 {% block body %}
 <div class="container cent">
-<h1 style="text-align: center; font-weight: bold">Ingreso de LÍNEA</h1>
+<h1 style="text-align: center; font-weight: bold">Ingreso de Unidad</h1>
 <div class="row cent">
- <form method="POST" action="/editarUnidad/" class="well"  role="form" >
+ <form method="POST" action="/submitIngresarUnidad/" class="well"  role="form" >
 
  <div class="row">
       <div class="col-md-4">
           <div class="form-group">
             <label for="idTitle">ID</label>
-            <input type="text" name="id" class="form-control" id="idTitle" readonly="readonly">
+            <input type="text" name="id" class="form-control" id="idTitle" value="AUTOGENERADO" readonly="readonly">
           </div>
       </div>
       <div class="col-md-4">
           <div class="form-group">
             <label for="institucionTitle">Institución</label>
-            <input type="text" name="institucion" class="form-control" id="institucionTitle" >
+
+            <select class="form-control" name="instituciones" id="institucionTitle">
+                      {% for i in registrosInstituciones %}
+                          <option value="{{ i.in_id }}">{{ i.in_nombre }}</option>
+                      {% endfor %}
+            </select>
+
           </div>
       </div>
 
      <div class="col-md-4">
          <div class="form-group">
-            <label for="id">Departamento</label>
-            <input type="text" name="departamento" class="form-control" id="departamentoTitle" >
+            <label for="departamentoTitle">Departamento</label>
+            <select class="form-control" name="departamentos" id="departamentoTitle">
+                      {% for i in registrosDepartamentos %}
+                          <option value="{{ i.de_id }}">{{ i.de_departmentName }}</option>
+                      {% endfor %}
+            </select>
           </div>
      </div>
 
@@ -38,22 +48,34 @@
   <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-            <label for="ciudadTitle">Ciudad</label>
-            <input type="text" name="ciudad" class="form-control" id="ciudadTitle" >
+            <label for="ciudadesTitle">Ciudad</label>
+            <select class="form-control" name="ciudades" id="ciudadesTitle">
+                      {% for i in registrosCantones %}
+                          <option value="{{ i.ca_id }}">{{ i.ca_nombre }}</option>
+                      {% endfor %}
+            </select>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="form-group">
             <label for="tipoTitle" >Tipo</label>
-            <input type="text"  name="tipo" class="form-control" id="tipoTitle" >
+            <select class="form-control" name="tipo" id="tipoTitle">
+                      {% for i in registrosTipo %}
+                          <option value="{{ i.ti_id }}">{{ i.ti_nombre }}</option>
+                      {% endfor %}
+            </select>
         </div>
        </div>
 
       <div class="col-md-4">
         <div class="form-group">
             <label for="estadoTitle" >Estado</label>
-            <input type="text"  name="estado" class="form-control" id="estadoTitle" >
+            <select class="form-control" name="estado" id="estadoTitle">
+                <option value="EN ESPERA">EN ESPERA</option>
+                <option value="NO DISPONIBLE">NO DISPONIBLE</option>
+                <option value="ASIGNADO">ASIGNADO</option>
+            </select>
         </div>
        </div>
 
@@ -63,43 +85,24 @@
       <div class="col-md-4">
         <div class="form-group">
             <label for="unidadTitle">Unidad</label>
-            <input type="text" name="unidad" class="form-control" id="unidadTitle" value="" >
+            <input type="text" name="unidad" class="form-control" id="unidadTitle" required>
         </div>
       </div>
-
-      <div class="col-md-8">
-        <div class="form-group">
-            <label for="codigo_gisTitle">Código GIS</label>
-            <input type="text" name="codigo_gis" class="form-control" id="codigo_gisTitle" value="" >
-        </div>
-      </div>
-  </div>
-
-  <div class="row">
 
       <div class="col-md-4">
           <div class="form-group">
             <label for="personaTitle">Persona</label>
-            <input type="text" name="persona" class="form-control" id="personaTitle" value="">
+            <input type="text" name="persona" class="form-control" id="personaTitle" required>
           </div>
       </div>
 
       <div class="col-md-4">
           <div class="form-group">
             <label for="telefonoTitle">Teléfono</label>
-            <input type="text" name="telefono" class="form-control" id="telefonoTitle" value="">
+            <input type="text" name="telefono" class="form-control" id="telefonoTitle" required>
           </div>
       </div>
-
-      <div class="col-md-4">
-          <div class="form-group">
-            <label for="origenTitle">Notas</label>
-            <input type="text" name="notas" class="form-control" id="notasTitle" value="">
-          </div>
-      </div>
-
   </div>
-
 
   <div class="row">
 
@@ -126,36 +129,63 @@
 
   </div>
 
-    <div class="row">
-      <div class="col-md-5">
+ <div class="row">
+      <div class="col-md-8">
           <div class="form-group">
-            <label for="asignado_sistemaTitle">Asignado Sistema(DD/MM/YYYY HH:MM:SS)</label>
-            <input type="datetime-local" value="1996-12-19T13:15:30" name="asignado_sistema" class="form-control" id="asignado_sistemaTitle" value="">
+            <label for="notasTitle">Notas</label>
+            <input type="text" name="notas" class="form-control" id="notasTitle" value="">
           </div>
       </div>
-<!--
+     <div class="col-md-4">
+          <div class="form-group">
+            <label for="codigo_gisTitle">Código GIS</label>
+            <input type="text" name="codigo_gis" class="form-control" id="codigo_gisTitle" value="">
+          </div>
+      </div>
+  </div>
+    <div class="row">
         <div class="col-md-4">
           <div class="form-group">
-            <label for="asignado_sisstemaTitle">Asignado Sistema</label>
-            <input type="datetime" name="asignado_sistsema" class="form-control" id="asignado_sistemaTitlse" value="">
+            <label for="marcaTitle">Marca</label>
+            <input type="text"  name="marca" class="form-control" id="marcaTitle" value="" required>
           </div>
       </div>
- -->
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="anioTitle">Año</label>
+            <input type="text"  name="anio" class="form-control" id="anioTitle" value="" required>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="asignado_sistemaTitle">Asignado Sistema</label>
+            <input type="datetime-local"  name="asignado_sistema" class="form-control" id="asignado_sistemaTitle" value="" required>
+          </div>
+      </div>
     </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin editar</button>
-        <button type="submit" class="btn btn-primary">Editar Registro</button>
+        <button type="button" class="btn btn-default" onclick="window.location.href='/unidades/'">Cerrar sin guardar</button>
+        <button type="submit" class="btn btn-primary">Guardar Unidad</button>
           </div>
  </form>
 
 </div>
     </div>
-    
 {% endblock %}
 
-
-
 {% block js %}
+    <script type="text/javascript">
+        $("#inicio").removeClass("active");
+        $("#unidades").addClass("active");
+       /*
+        var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);
+        var today = now.getFullYear()+"-"+(month)+"-"+(day) +"T"+now.getHours()+":"+now.getMinutes()+":00";
+        $("#asignado_sistemaTitle").val(today);*/
+    </script>
 
 {% endblock %}

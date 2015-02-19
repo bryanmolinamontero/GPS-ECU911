@@ -65,7 +65,7 @@ class gps_instituciones(models.Model):
 class gps_tipo_unidades(models.Model):
     ti_id = models.AutoField(primary_key=True)
     ti_clase_unidad = models.CharField(max_length=150, blank=True)
-    ti_nombre = models.CharField(max_length=150, blank=True)
+    ti_nombre = models.CharField(max_length=150, blank=True , null=True)
     class Meta:
         db_table = 'gps_tipo_unidades'
 
@@ -74,14 +74,14 @@ class gps_tipo_unidades(models.Model):
 
 class gps_departamento(models.Model):
     de_id = models.AutoField(primary_key=True)
-    de_departmentId_gis = models.CharField(max_length=40, blank=True)
+    de_departmentId_gis = models.CharField(max_length=40, blank=True, null=True)
     de_departmentName = models.CharField(max_length=250, blank=True)
-    de_EncargadoName = models.CharField(max_length=200, blank=True)
-    de_departmentdireccion = models.CharField(max_length=250, blank=True)
-    de_departmentPhone = models.CharField(max_length=15, blank=True)
-    de_departmentFax = models.CharField(max_length=20, blank=True)
-    de_departmentEmail = models.CharField(max_length=50, blank=True)
-    de_notas = models.CharField(max_length=250, blank=True)
+    de_EncargadoName = models.CharField(max_length=200, blank=True,null=True)
+    de_departmentdireccion = models.CharField(max_length=250, blank=True, null=True)
+    de_departmentPhone = models.CharField(max_length=15, blank=True, null=True)
+    de_departmentFax = models.CharField(max_length=20, blank=True, null=True)
+    de_departmentEmail = models.CharField(max_length=50, blank=True, null=True)
+    de_notas = models.CharField(max_length=250, blank=True, null=True)
 
     class Meta:
         db_table = 'gps_departamento'
@@ -89,11 +89,10 @@ class gps_departamento(models.Model):
     def __unicode__(self):
         return '%d, %s, %s, %s, %s, %s, %s, %s, %s' % (self.de_id, self.de_departmentId_gis, self.de_departmentName, self.de_EncargadoName, self.de_departmentdireccion, self.de_departmentPhone, self.de_departmentFax, self.de_departmentEmail, self.de_notas)
 
-
 class gps_cantones(models.Model):
     ca_id = models.AutoField(primary_key=True)
     ca_nombre = models.CharField(max_length=15, blank=True)
-    ca_provincia = models.CharField(max_length=15, blank=True)
+    ca_provincia = models.CharField(max_length=15, blank=True, null=True)
 
     class Meta:
         db_table = 'gps_cantones'
@@ -102,24 +101,27 @@ class gps_cantones(models.Model):
         return '%d, %s, %s' % (self.ca_id, self.ca_nombre, self.ca_provincia)
 
 
-'''class gps_unidades(models.Model):
+class gps_unidades(models.Model):
     un_id = models.AutoField(primary_key=True)
-    un_departamento = models.CharField(max_length=100, blank=True)
-    un_ciudad = models.CharField(max_length=50, blank=True)--
-    un_estado = models.CharField(max_length=50, blank=True)
-    un_unidad = models.CharField(max_length=100, blank=True)
-    un_codigo_gis = models.CharField(max_length=100, blank=True)
-    un_persona = models.CharField(max_length=50, blank=True)
-    un_telefono = models.CharField(max_length=50, blank=True)
-    un_notas = models.CharField(max_length=250, blank=True)
-    un_placa = models.CharField(max_length=50, blank=True)
-    un_modelo = models.CharField(max_length=100, blank=True)
-    un_uso = models.CharField(max_length=250, blank=True)
+    un_estado = models.CharField(max_length=50, blank=True, null=True)
+    un_unidad = models.CharField(max_length=100, blank=True, null=True)
+    un_codigo_gis = models.CharField(max_length=100, blank=True, null=True)
+    un_persona = models.CharField(max_length=50, blank=True, null=True)
+    un_telefono = models.CharField(max_length=50, blank=True, null=True)
+    un_notas = models.CharField(max_length=250, blank=True, null=True)
+    un_placa = models.CharField(max_length=50, blank=True, null=True)
+    un_modelo = models.CharField(max_length=100, blank=True, null=True)
+    un_uso = models.CharField(max_length=250, blank=True, null=True)
     un_asignado_sistema = models.DateTimeField(null=True, blank=True)
+    un_institucion_id = models.ForeignKey('gps_instituciones', db_column='in_id')
+    un_departamento_id = models.ForeignKey('gps_departamento', db_column='de_id')
+    un_canton_id = models.ForeignKey('gps_cantones', db_column='ca_id')
+    un_tipounidad_id = models.ForeignKey('gps_tipo_unidades', db_column='ti_id')
+    un_anio = models.CharField(max_length=10, blank=True, null=True)
+    un_marca = models.CharField(max_length=40, blank=True, null=True)
 
     class Meta:
         db_table = 'gps_unidades'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.un_id, self.un_institucion, self.un_departamento, self.un_ciudad, self.un_tipo, self.un_estado, self.un_unidad, self.un_codigo_gis, self.un_persona, self.un_telefono, self.un_notas, self.un_placa, self.un_modelo, self.un_uso, self.un_asignado_sistema)
-'''
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.un_id, self.un_estado, self.un_unidad, self.un_codigo_gis, self.un_persona, self.un_telefono, self.un_notas, self.un_placa, self.un_modelo, self.un_uso, self.un_asignado_sistema, self.un_institucion_id.in_nombre , self.un_departamento_id.de_departmentName, self.un_canton_id.ca_nombre,self.un_tipounidad_id.ti_nombre)

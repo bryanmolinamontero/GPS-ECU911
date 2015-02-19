@@ -30,29 +30,27 @@
 
                                 <thead class="btn-primary cabeceraTabla">
                                 <th>ID</th>
-                                <th>INSTITUCIÓN</th>
+                                <th>UNIDAD</th>
+                                <th class="col-md-1">INSTITUCIÓN</th>
                                 <th class="col-md-1">DEPARTAMENTO</th>
-                                <th class="col-md-1">TIPO</th>
-                                <th>CIUDAD</th>
-                                <th>ESTADO</th>
-                                <th class="col-sm-1">UNIDAD</th>
+                                <th class="col-sm-1">CIUDAD</th>
+                                <th class="col-sm-1">ESTADO</th>
+                                <th>TIPO</th>
                                 <th class="col-sm-1">EDIT</th>
                                 </thead>
-
                                 <tbody>
-
                                     {% for i in registros %}
                                         <tr>
-                                        <td id="id_{{ i.un_id }}">{{i.un_id}}</td>
-                                        <td id="id_{{ i.un_institucion }}">{{i.un_institucion}}</td>
-                                        <td id="id_{{ i.un_departamento }}">{{i.un_departamento}}</td>
-                                        <td id="id_{{ i.un_tipo }}">{{i.un_tipo}}</td>
-                                        <td id="id_{{ i.un_ciudad }}">{{i.un_ciudad}}</td>
-                                        <td id="id_{{ i.un_estado }}">{{i.un_estado}}</td>
-                                        <td id="id_{{ i.un_unidad }}">{{i.un_unidad}}</td>
+                                        <td>{{i.un_id}}</td>
+                                        <td>{{i.un_unidad}}</td>
+                                        <td>{{i.un_institucion_id.in_nombre}}</td>
+                                        <td>{{i.un_departamento_id.de_departmentName}}</td>
+                                        <td>{{i.un_canton_id.ca_nombre}}</td>
+                                        <td>{{i.un_estado}}</td>
+                                        <td>{{i.un_tipounidad_id.ti_nombre}}</td>
                                         <td>
-                                            <span class="btn glyphicon glyphicon-edit" style="color: #418BCA; width: 1px;padding-top:0px;height: 1px;vertical-align: baseline" aria-hidden="true" onclick="editarRegistro({{ i.un_id }} , '{{ i.un_institucion }}' , '{{ i.un_departamento}}'  , '{{ i.un_ciudad }}' , '{{ i.un_tipo }}' , '{{ i.un_estado }}' , '{{ i.un_unidad }}', '{{ i.un_codigo_gis }}', '{{ i.un_persona }}', '{{ i.un_telefono }}' ,  '{{ i.un_notas | safe }}', '{{ i.un_placa }}', '{{ i.un_modelo }}', '{{ i.un_uso }}', '{{ i.un_asignado_sistema | safe}}' )" data-toggle="modal" data-target="#myModal"></span>
-                                            <span class="btn glyphicon glyphicon-remove" style="color: red;width: 1px;padding-top:0px;height: 1px; vertical-align: baseline" aria-hidden="true"></span>
+                                            <span class="btn glyphicon glyphicon-edit" style="color: #418BCA; width: 1px;padding-top:0px;height: 1px;vertical-align: baseline" aria-hidden="true" onclick="editarRegistro({{ i.un_id }} , '{{ i.un_institucion_id.in_id}}' , '{{ i.un_departamento_id.de_id}}'  , '{{ i.un_canton_id.ca_id}}' , '{{ i.un_tipounidad_id.ti_id }}' , '{{ i.un_estado |safe }}' , '{{ i.un_unidad }}', '{{ i.un_codigo_gis }}', '{{ i.un_persona }}', '{{ i.un_telefono }}' ,  '{{ i.un_notas | safe }}', '{{ i.un_placa }}', '{{ i.un_modelo }}', '{{ i.un_uso }}', '{{ i.un_asignado_sistema | safe}}' , '{{ i.un_anio }}' , '{{ i.un_marca }}')" data-toggle="modal" data-target="#myModal" title="Visualizar/Editar"></span>
+                                            <span class="btn glyphicon glyphicon-remove" style="color: red;width: 1px;padding-top:0px;height: 1px; vertical-align: baseline" aria-hidden="true" onclick="anularRegistro({{ i.un_id }}, '{{ i.un_unidad }}', '{{ i.un_institucion_id.in_nombre}}' , '{{ i.un_tipounidad_id.ti_nombre }}')" data-toggle="modal" data-target="#myModal2" title="Anular" ></span>
                                         </td>
                                         </tr>
                                 {% endfor %}
@@ -85,14 +83,16 @@
       <div class="col-md-4">
           <div class="form-group">
             <label for="institucionTitle">Institución</label>
-            <input type="text" name="institucion" class="form-control" id="institucionTitle" >
+              <select class="form-control" name="instituciones" id="institucionTitle">
+              </select>
           </div>
       </div>
 
      <div class="col-md-4">
          <div class="form-group">
             <label for="id">Departamento</label>
-            <input type="text" name="departamento" class="form-control" id="departamentoTitle" >
+             <select class="form-control" name="departamentos" id="departamentoTitle">
+             </select>
           </div>
      </div>
 
@@ -101,22 +101,28 @@
   <div class="row">
       <div class="col-md-4">
         <div class="form-group">
-            <label for="ciudadTitle">Ciudad</label>
-            <input type="text" name="ciudad" class="form-control" id="ciudadTitle" >
+            <label for="ciudadesTitle">Ciudad</label>
+              <select class="form-control" name="ciudades" id="ciudadesTitle">
+              </select>
         </div>
       </div>
 
       <div class="col-md-4">
         <div class="form-group">
             <label for="tipoTitle" >Tipo</label>
-            <input type="text"  name="tipo" class="form-control" id="tipoTitle" >
+            <select class="form-control" name="tipo" id="tipoTitle">
+            </select>
         </div>
        </div>
 
       <div class="col-md-4">
         <div class="form-group">
             <label for="estadoTitle" >Estado</label>
-            <input type="text"  name="estado" class="form-control" id="estadoTitle" >
+            <select class="form-control" name="estado" id="estadoTitle">
+                <option value="EN ESPERA">EN ESPERA</option>
+                <option value="NO DISPONIBLE">NO DISPONIBLE</option>
+                <option value="ASIGNADO">ASIGNADO</option>
+            </select>
         </div>
        </div>
 
@@ -126,7 +132,7 @@
       <div class="col-md-4">
         <div class="form-group">
             <label for="unidadTitle">Unidad</label>
-            <input type="text" name="unidad" class="form-control" id="unidadTitle" value="" >
+            <input type="text" name="unidad" class="form-control" id="unidadTitle" value="" required>
         </div>
       </div>
 
@@ -143,14 +149,14 @@
       <div class="col-md-4">
           <div class="form-group">
             <label for="personaTitle">Persona</label>
-            <input type="text" name="persona" class="form-control" id="personaTitle" value="">
+            <input type="text" name="persona" class="form-control" id="personaTitle" value="" required>
           </div>
       </div>
 
       <div class="col-md-4">
           <div class="form-group">
             <label for="telefonoTitle">Teléfono</label>
-            <input type="text" name="telefono" class="form-control" id="telefonoTitle" value="">
+            <input type="text" name="telefono" class="form-control" id="telefonoTitle" value="" required>
           </div>
       </div>
 
@@ -190,14 +196,29 @@
   </div>
 
     <div class="row">
-      <div class="col-md-5">
+
+        <div class="col-md-4">
           <div class="form-group">
-            <label for="asignado_sistemaTitle">Asignado Sistema(YYYY/MM/DD HH:MM:SS)</label>
-            <input type="text" name="asignado_sistema" class="form-control" id="asignado_sistemaTitle" value="">
+            <label for="marcaTitle">Marca</label>
+            <input type="text"  name="marca" class="form-control" id="marcaTitle" value="" required>
+          </div>
+      </div>
+
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="anioTitle">Año</label>
+            <input type="text"  name="anio" class="form-control" id="anioTitle" value="" required>
+          </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+            <label for="asignado_sistemaTitle">Asignado Sistema</label>
+            <input type="datetime-local" name="asignado_sistema" class="form-control" id="asignado_sistemaTitle" value="" required>
           </div>
       </div>
 <!--
-        <div class="col-md-4">
+      <div class="col-md-4">
           <div class="form-group">
             <label for="asignado_sisstemaTitle">Asignado Sistema</label>
             <input type="datetime" name="asignado_sistsema" class="form-control" id="asignado_sistemaTitlse" value="">
@@ -218,6 +239,69 @@
 
 </div>
 <!-- fin del modal editar-->
+
+
+<!-- modal de eliminar-->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Anular Unidad</h4>
+      </div>
+      <div class="modal-body">
+
+<form method="POST" action="/anularUnidad/" class="well"  role="form" >
+
+ <div class="row">
+      <div class="col-md-6">
+          <div class="form-group">
+            <label for="id2">ID</label>
+            <input type="text" name="id2" class="form-control" id="idTitle2" readonly="true">
+          </div>
+      </div>
+      <div class="col-md-6"></div>
+
+  </div>
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="nombreUnidadTitle">Unidad</label>
+            <input type="text" name="nombreUnidad" class="form-control" id="nombreUnidadTitle" readonly="true">
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="institucionTitle2" >Institución</label>
+            <input type="text"  name="insititucion" class="form-control" id="institucionTitle2" readonly="true">
+        </div>
+       </div>
+
+  </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label for="tipoUnidadTitle2">Tipo Unidad</label>
+            <input type="text" name="tipoUnidad" class="form-control" id="tipoUnidadTitle2" value="" readonly="true">
+        </div>
+      </div>
+  </div>
+
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar sin Anular</button>
+        <button type="submit" class="btn btn-danger">Anular Registro</button>
+          </div>
+          </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- fin del modal-->
 
 
 {% endblock %}
@@ -257,13 +341,66 @@
                 }
             }
         } );
-    } );
+    cargarComboBoxInstituciones();
+    cargarComboBoxDepartamentos();
+    cargarComboBoxCiudades();
+    cargarComboBoxTipoDeUnidad();
+    });
 
-    function editarRegistro(id, institucion, departamento, ciudad, tipo, estado, unidad, codigo_gis, persona, telefono, notas, placa, modelo, uso, asignado_sistema){
+    function cargarComboBoxInstituciones(){
+        $.ajax({
+                url : '/cargarComboBoxInstituciones/',
+                type : 'get',
+                success: function(data){
+                    for(var i=0;i<data.length;i++)
+                        $("#institucionTitle").append('<option value="'+data[i].pk +'"> '+data[i].fields.in_nombre+ '</option>');
+                    }// fin del success
+               }); // fin del ajax
+    }
+
+    function cargarComboBoxDepartamentos(){
+        $.ajax({
+                url : '/cargarComboBoxDepartamentos/',
+                type : 'get',
+                success: function(data){
+                    for(var i=0;i<data.length;i++)
+                        $("#departamentoTitle").append('<option value="'+data[i].pk +'"> '+data[i].fields.de_departmentName+ '</option>');
+                    }// fin del success
+               }); // fin del ajax
+    }
+
+    function cargarComboBoxCiudades(){
+        $.ajax({
+                url : '/cargarComboBoxCiudades/',
+                type : 'get',
+                success: function(data){
+                    for(var i=0;i<data.length;i++)
+                        $("#ciudadesTitle").append('<option value="'+data[i].pk +'"> '+data[i].fields.ca_nombre+ '</option>');
+                    }// fin del success
+               }); // fin del ajax
+    }
+
+    function cargarComboBoxTipoDeUnidad(){
+        $.ajax({
+                url : '/cargarComboBoxTipoDeUnidad/',
+                type : 'get',
+                success: function(data){
+                    for(var i=0;i<data.length;i++)
+                        $("#tipoTitle").append('<option value="'+data[i].pk +'"> '+data[i].fields.ti_nombre+ '</option>');
+                    }// fin del success
+               }); // fin del ajax
+    }
+
+    function editarRegistro(id, institucion, departamento, ciudad, tipo, estado, unidad, codigo_gis, persona, telefono, notas, placa, modelo, uso, asignado_sistema, anio, marca){
+        console.log("*****************");
+        //console.log("asignado sistema --> " + asignado_sistema);
+        console.log("estado --> " + estado);
+        console.log("*****************");
+        // var sel = document.getElementById('institucionTitle');
         $("#idTitle").val(id);
         $("#institucionTitle").val(institucion);
         $("#departamentoTitle").val(departamento);
-        $("#ciudadTitle").val(ciudad);
+        $("#ciudadesTitle").val(ciudad);
         $("#tipoTitle").val(tipo);
         $("#estadoTitle").val(estado);
         $("#unidadTitle").val(unidad);
@@ -274,7 +411,25 @@
         $("#placaTitle").val(placa);
         $("#modeloTitle").val(modelo);
         $("#usoTitle").val(uso);
-        $("#asignado_sistemaTitle").val(asignado_sistema);
+        $("#marcaTitle").val(marca);
+        $("#anioTitle").val(anio);
+        //$("#asignado_sistemaTitle").val(asignado_sistema);
+        /*var now = new Date();
+        var day = ("0" + now.getDate()).slice(-2);
+        var month = ("0" + (now.getMonth() + 1)).slice(-2);*/
+        //var today = now.getFullYear()+"-"+(month)+"-"+(day) +"T"+now.getHours()+":"+now.getMinutes();
+        //var today = (day) + "/" + (month) + "/" + now.getFullYear()+"T"+now.getHours()+":"+now.getMinutes();
+        var separados = asignado_sistema.split(" ");
+        //$("#asignado_sistemaTitle").val("2014-10-08T12:05:00");
+        $("#asignado_sistemaTitle").val(separados[0]+"T"+separados[1]);
+    }
+
+    function anularRegistro(id, nombreUnidad, institucion, tipoUnidad){
+
+        $("#idTitle2").val(id);
+        $("#nombreUnidadTitle").val(nombreUnidad);
+        $("#institucionTitle2").val(institucion);
+        $("#tipoUnidadTitle2").val(tipoUnidad);
 
     }
 
