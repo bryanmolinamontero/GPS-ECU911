@@ -32,24 +32,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/website/views.py">
+      <file leaf-file-name="unidades.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/unidades.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="450" column="66" selection-start="17941" selection-end="17941" vertical-scroll-proportion="0.4742268" vertical-offset="7415" max-vertical-offset="7820">
+            <state line="239" column="6" selection-start="3706" selection-end="9433" vertical-scroll-proportion="118.80769" vertical-offset="7152" max-vertical-offset="7514">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ingresarActa.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="lineas.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/lineas.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="403" column="8" selection-start="16299" selection-end="16541" vertical-scroll-proportion="-6.8076925" vertical-offset="6674" max-vertical-offset="7123">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/website/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="451" column="178" selection-start="18122" selection-end="18122" vertical-scroll-proportion="0.0" vertical-offset="7415" max-vertical-offset="7820">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ingresarActa.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/ingresarActa.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="131" column="52" selection-start="6051" selection-end="6051" vertical-scroll-proportion="-4.357143" vertical-offset="2105" max-vertical-offset="3502">
+            <state line="217" column="53" selection-start="10450" selection-end="10450" vertical-scroll-proportion="0.24444444" vertical-offset="3601" max-vertical-offset="3995">
               <folding>
                 <element signature="e#873#898#0" expanded="true" />
-                <element signature="e#3198#3247#0" expanded="true" />
-                <element signature="e#4277#4302#0" expanded="true" />
-                <element signature="e#4671#4696#0" expanded="true" />
+                <element signature="e#3621#3670#0" expanded="true" />
+                <element signature="e#4700#4725#0" expanded="true" />
+                <element signature="e#5095#5120#0" expanded="true" />
+                <element signature="e#5308#5333#0" expanded="true" />
+                <element signature="e#5513#5537#0" expanded="true" />
+                <element signature="e#5751#5775#0" expanded="true" />
+                <element signature="e#7926#7952#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -58,7 +80,7 @@
       <file leaf-file-name="gps.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/gps.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="52" column="269" selection-start="2971" selection-end="3014" vertical-scroll-proportion="-2.1960785" vertical-offset="772" max-vertical-offset="5933">
+            <state line="308" column="42" selection-start="14070" selection-end="14070" vertical-scroll-proportion="-22.941177" vertical-offset="4066" max-vertical-offset="5933">
               <folding>
                 <element signature="e#2779#2837#0" expanded="true" />
               </folding>
@@ -90,8 +112,8 @@
         <option value="$PROJECT_DIR$/website/models.py" />
         <option value="$PROJECT_DIR$/templates/ingresarUnidad.html" />
         <option value="$PROJECT_DIR$/templates/unidades.html" />
-        <option value="$PROJECT_DIR$/templates/ingresarActa.html" />
         <option value="$PROJECT_DIR$/website/views.py" />
+        <option value="$PROJECT_DIR$/templates/ingresarActa.html" />
       </list>
     </option>
   </component>
@@ -453,7 +475,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20497803" sideWeight="0.7011494" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26866764" sideWeight="0.7011494" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25615764" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -529,13 +551,6 @@
         <state line="5" column="0" selection-start="14" selection-end="14" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1462" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/lineas.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="403" column="8" selection-start="16299" selection-end="16541" vertical-scroll-proportion="0.39420936" vertical-offset="6674" max-vertical-offset="7123">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/ingresarGPS.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="119" column="25" selection-start="3202" selection-end="3202" vertical-scroll-proportion="0.5963061" vertical-offset="1797" max-vertical-offset="2176">
@@ -571,34 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/unidades.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="239" column="6" selection-start="3706" selection-end="9433" vertical-scroll-proportion="-6.1923075" vertical-offset="3902" max-vertical-offset="7514">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/gps.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="52" column="269" selection-start="2971" selection-end="3014" vertical-scroll-proportion="-2.1960785" vertical-offset="772" max-vertical-offset="5933">
-          <folding>
-            <element signature="e#2779#2837#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/ingresarActa.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="131" column="52" selection-start="6051" selection-end="6051" vertical-scroll-proportion="-4.357143" vertical-offset="2105" max-vertical-offset="3502">
-          <folding>
-            <element signature="e#873#898#0" expanded="true" />
-            <element signature="e#3198#3247#0" expanded="true" />
-            <element signature="e#4277#4302#0" expanded="true" />
-            <element signature="e#4671#4696#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/website/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="117" column="40" selection-start="5572" selection-end="5572" vertical-scroll-proportion="0.0" vertical-offset="1688" max-vertical-offset="2261">
@@ -608,8 +595,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/website/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="450" column="66" selection-start="17941" selection-end="17941" vertical-scroll-proportion="0.4742268" vertical-offset="7415" max-vertical-offset="7820">
+        <state line="451" column="178" selection-start="18122" selection-end="18122" vertical-scroll-proportion="0.0" vertical-offset="7415" max-vertical-offset="7820">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/gps.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="308" column="42" selection-start="14070" selection-end="14070" vertical-scroll-proportion="-22.941177" vertical-offset="4066" max-vertical-offset="5933">
+          <folding>
+            <element signature="e#2779#2837#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/lineas.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="403" column="8" selection-start="16299" selection-end="16541" vertical-scroll-proportion="-6.8076925" vertical-offset="6674" max-vertical-offset="7123">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/unidades.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="239" column="6" selection-start="3706" selection-end="9433" vertical-scroll-proportion="118.80769" vertical-offset="7152" max-vertical-offset="7514">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ingresarActa.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="217" column="53" selection-start="10450" selection-end="10450" vertical-scroll-proportion="0.24444444" vertical-offset="3601" max-vertical-offset="3995">
+          <folding>
+            <element signature="e#873#898#0" expanded="true" />
+            <element signature="e#3621#3670#0" expanded="true" />
+            <element signature="e#4700#4725#0" expanded="true" />
+            <element signature="e#5095#5120#0" expanded="true" />
+            <element signature="e#5308#5333#0" expanded="true" />
+            <element signature="e#5513#5537#0" expanded="true" />
+            <element signature="e#5751#5775#0" expanded="true" />
+            <element signature="e#7926#7952#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

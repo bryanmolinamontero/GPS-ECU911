@@ -449,7 +449,7 @@ def ingresarActa(request):
     registrosInstituciones = gps_instituciones.objects.all().order_by("in_id")
     registrosCantones = gps_cantones.objects.all().order_by("ca_id")
     registrosUnidades = gps_unidades.objects.all().order_by("un_id")
-    return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones})
+    return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones, "registrosUnidades":registrosUnidades})
 
 
 #**********************************
