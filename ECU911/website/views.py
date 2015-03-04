@@ -442,16 +442,34 @@ def submitCambiarSimCard(request):
         return HttpResponseRedirect('/lineas/')
 
 
-
 #*************** ACTAS ************
 
 def ingresarActa(request):
     registrosInstituciones = gps_instituciones.objects.all().order_by("in_id")
     registrosCantones = gps_cantones.objects.all().order_by("ca_id")
     registrosUnidades = gps_unidades.objects.all().order_by("un_id")
-    return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones, "registrosUnidades":registrosUnidades})
+    registrosGPS = gps_imei.objects.all().order_by("im_id")
+    registrosTipoUnidades = gps_tipo_unidades.objects.all().order_by("ti_id")
+    return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones, "registrosUnidades":registrosUnidades, "registrosGps":registrosGPS, "registrosTipoUnidades":registrosTipoUnidades})
 
 
 #**********************************
+
+
+
+def ingresarImagen(request):
+
+    imagen = request.FILES['imagen1']
+
+    print "*********************"
+    print "*********************"
+    print imagen
+    print "*********************"
+    print "*********************"
+    registro = pruebita(imagen= imagen)
+    registro.save()
+
+    return HttpResponse("sda")
+
 
 

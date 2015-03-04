@@ -2,12 +2,10 @@
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" hash="774189761">
     <data-source source="LOCAL" name="Django default" uuid="9ebd933e-c696-4975-9575-088750a56ad2">
+      <driver-ref>postgresql</driver-ref>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://127.0.0.1/gps</jdbc-url>
-      <user-name>postgres</user-name>
-      <user-password>df9bdf98df99df9edf9f</user-password>
       <libraries />
     </data-source>
   </component>
 </project>
-

@@ -125,3 +125,18 @@ class gps_unidades(models.Model):
 
     def __unicode__(self):
         return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.un_id, self.un_estado, self.un_unidad, self.un_codigo_gis, self.un_persona, self.un_telefono, self.un_notas, self.un_placa, self.un_modelo, self.un_uso, self.un_asignado_sistema, self.un_institucion_id.in_nombre , self.un_departamento_id.de_departmentName, self.un_canton_id.ca_nombre,self.un_tipounidad_id.ti_nombre)
+
+
+class pruebita(models.Model):
+
+    imagen=models.ImageField(upload_to='imagenes',help_text='Seleccione la imagen para la noticia...', null=True,blank=True)
+
+    class Meta:
+        db_table = 'pruebita'
+        verbose_name_plural = "pruebita"
+
+    def __unicode__(self):
+        return "%s"%(self.imagen)
+
+
+
