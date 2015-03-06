@@ -450,7 +450,15 @@ def ingresarActa(request):
     registrosUnidades = gps_unidades.objects.all().order_by("un_id")
     registrosGPS = gps_imei.objects.all().order_by("im_id")
     registrosTipoUnidades = gps_tipo_unidades.objects.all().order_by("ti_id")
-    return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones, "registrosUnidades":registrosUnidades, "registrosGps":registrosGPS, "registrosTipoUnidades":registrosTipoUnidades})
+
+    #vista para el combo no tarjeta sim
+    from django.db import connection
+    cursor = connection.cursor()
+    sql = 'select gps_lineas.li_id, li_numero_linea, si_id, si_simcard, si_actual from gps_lineas, gps_sim_card where gps_lineas.li_id = gps_sim_card.li_id and si_actual=TRUE'
+    cursor.execute(sql)
+    registrosNTarjetaSim = cursor.fetchall()
+
+    return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones, "registrosUnidades":registrosUnidades, "registrosGps":registrosGPS, "registrosTipoUnidades":registrosTipoUnidades, "registrosNTarjetaSim":registrosNTarjetaSim})
 
 
 #**********************************
@@ -460,9 +468,8 @@ def ingresarActa(request):
 def ingresarImagen(request):
 
     imagen = request.FILES['imagen1']
-
     print "*********************"
-    print "*********************"
+    print "*****m****************"
     print imagen
     print "*********************"
     print "*********************"
@@ -473,3 +480,13 @@ def ingresarImagen(request):
 
 
 
+def ingresarActa2(req):
+    #select gps_lineas.li_id, li_numero_linea, si_simcard, si_actual from gps_lineas, gps_sim_card
+    #where gps_lineas.li_id = gps_sim_card.li_id and si_actual=TRUE
+    #registros = gps_lineas.objects
+    from django.db import connection
+    cursor = connection.cursor()
+    sql = 'select gps_lineas.li_id, li_numero_linea, si_id, si_simcard, si_actual from gps_lineas, gps_sim_card where gps_lineas.li_id = gps_sim_card.li_id and si_actual=TRUE'
+    cursor.execute(sql)
+    results = cursor.fetchall()
+    return render_to_response('pr.html',{"lst":results})

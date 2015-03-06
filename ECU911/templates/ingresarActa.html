@@ -17,216 +17,278 @@
 
 {% block body %}
     <div class="container cent">
-    <div class="row well titulos">Acta de Entrega y Recepción de Equipos Periféricos para Centro ECU911 Machala.
-    </div>
+        <div class="row well titulos">Acta de Entrega y Recepción de Equipos Periféricos para Centro ECU911 Machala.
+        </div>
 
-    <div class="row well">
-        <div class="form-horizontal">
-            <div class="col-md-6 ">
+        <div class="row well">
+            <form action="/submitIngresarActa/" method="post" enctype="multipart/form-data">
+                <div class="form-horizontal">
+                    <div class="col-md-6 ">
 
-                <div class="form-group">
-                    <label for="institucionTitle" class="col-sm-3 "style="margin-top: 10px;">Institución</label>
-                    <div class="col-sm-9">
-                        <select class="form-control" name="instituciones" id="institucionTitle">
-                            {% for i in registrosInstituciones %}
-                                <option value="{{ i.in_id }}">{{ i.in_nombre }}</option>
-                            {% endfor %}
-                        </select>
+                        <div class="form-group">
+                            <label for="institucionTitle" class="col-sm-3 "style="margin-top: 10px;">Institución</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="instituciones" id="institucionTitle">
+                                    {% for i in registrosInstituciones %}
+                                        <option value="{{ i.in_id }}">{{ i.in_nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="provinciaDeTrabajoTitle" class="col-sm-3" style="margin-top: 10px;">Provincia de Trabajo</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="provinciaDeTrabajoTitle" style="margin-top: 10px;" name="provinciaDeTrabajo" value="El ORO">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ciudadesTitle" class="col-sm-3">Ciudad de Trabajo</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="ciudades" id="ciudadesTitle">
+                                    {% for i in registrosCantones %}
+                                        <option value="{{ i.ca_id }}">{{ i.ca_nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lugarDeInstalacionTitle" class="col-sm-3">Lugar de Instalación</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="lugarDeInstalacionTitle" name="lugarDeInstalacion" value="ECU 911">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaDeInstalacionTitle" class="col-sm-3">Fecha de Instalación</label>
+                            <div class="col-sm-9">
+                                <input type="date" class="form-control" id="fechaDeInstalacionTitle" name="fechaDeInstalacion" required="">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombreUnidadTitle" class="col-sm-3">Nombre de Unidad</label>
+                            <div class="col-sm-5">
+                                <input type="hidden" id="codigoUnidadTitle" name="codigoUnidad" readonly="true" required>
+                                <input type="texto" class="form-control" id="nombreUnidadTitle" name="nombreUnidad" readonly="true">
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="btn glyphicon glyphicon-search" style="color: #000000; background-color: #acbad4" onclick="" data-toggle="modal" data-target="#myModal" title="Buscar"> BUSCAR</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="marcaVehiculoTitle" class="col-sm-3">Marca de Vehículo</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="marcaVehiculoTitle" name="marcaVehiculo" readonly="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="modeloVehiculoTitle" class="col-sm-3">Modelo de Vehículo</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="modeloVehiculoTitle" name="modeloVehiculo" readonly="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="placaVehiculoTitle" class="col-sm-3" style="margin-top: 10px;">Placa</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="placaVehiculoTitle" name="placaVehiculo" readonly="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group" >
+                            <label for="anioVehiculoTitle" class="col-sm-3" style="margin-top: 20px;">Año</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="anioVehiculoTitle" name="anioVehiculo" readonly="true" style="margin-top: 9px; ">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estadoVehiculoTitle" class="col-sm-3" style="margin-top: 5px;">Estado Vehículo</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="estadoVehiculo" id="estadoVehiculoTitle" style="margin-top: 5px;">
+
+                                    <option value="OK">OK</option>
+                                    <option value="MAL ESTADO">MAL ESTADO</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                        <div>
+                            <div class="form-group">
+                                <label for="imagen1Title" class="col-sm-3" >Imagen 1:</label>
+                                <div class="col-sm-9">
+                                    <input type="file" accept="image/*" id="imagen1Title" name="imagen1" >
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <div class="col-md-6 ">
+
+                        <div class="form-group">
+                            <label for="puntoDeInstalacionTitle" class="col-sm-3">Punto de Instalación</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="puntoDeInstalacionTitle" name="puntoDeInstalacion" value="Panel Frontal">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="imeiTitle" class="col-sm-3" style="margin-top: 10px;">IMEI</label>
+                            <div class="col-sm-5">
+                                <input type="hidden" class="form-control uni" id="codigoImeiTitle" name="codigoImei" readonly="true" required>
+                                <input type="texto" class="form-control uni" id="imeiTitle" name="imei" readonly="true" style="margin-top: 10px;" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="btn glyphicon glyphicon-search" style=" margin-top:10px; color: #000000; background-color: #acbad4" onclick="" data-toggle="modal" data-target="#myModal2" title="Buscar"> BUSCAR</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numeroDeSerieTitle" class="col-sm-3" style="margin-top: 5px;">Número de Serie GPS</label>
+                            <div class="col-sm-9">
+                                <input type="texto" style="margin-top: 10px;" class="form-control" id="numerodeSerieTitle" name="numeroDeSerie" readonly="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombreDeServidorTitle" class="col-sm-3">Nombre de Servidor</label>
+                            <div class="col-sm-9">
+                                <input type="texto" class="form-control" id="nombreDeServidorTitle" name="nombreDeServidor"  style="margin-top: 3px;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nroTarjetaSimTitle" class="col-sm-3">N°. Tarjeta SIM</label>
+                            <div class="col-sm-5">
+                                <input type="hidden"  id="IDnroTarjetaSimTitle" name="IDnroTarjeta" readonly="true">
+                                <input type="texto" class="form-control uni"  id="nroTarjetaSimTitle" name="nroTarjeta" readonly="true" required>
+                            </div>
+                            <div class="col-sm-2">
+                                <span class="btn glyphicon glyphicon-search" style="color: #000000; background-color: #acbad4" onclick="" data-toggle="modal" data-target="#myModal3" title="Buscar"> BUSCAR</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nroSerialTarjetaSimTitle" class="col-sm-3" >N°. Serial de Tarjeta Sim</label>
+                            <div class="col-sm-9">
+                                <input type="hidden"  id="IDSimCardTitle" name="IDSimCard" readonly="true">
+                                <input type="text"  class="form-control" id="nroSerialTarjetaSimTitle" name="nroSerialTarjetaSim" readonly="true">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contraseniaTitle" class="col-sm-3" style="margin-top:5px;">Contraseña</label>
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" id="contraseniaTitle" name="contrasenia" style="margin-top:0px;">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="intervaloTransmisionTitle" class="col-sm-3" style="margin-top: 10px;" >Intervalo de trans. datos</label>
+                            <div class="col-sm-9">
+                                <input type="texto"  class="form-control" style="margin-top: 12px;" id="intervaloTransmisionTitle" name="intervaloTransmision" value="20 seg">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="voltajeTitle" class="col-sm-3" style="margin-top: 12px;" >Voltaje</label>
+                            <div class="col-sm-9">
+                                <input type="texto"  class="form-control" style="margin-top: 0px;" id="voltajeTitle" name="voltaje" value="12 voltios">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipoVehiculoTitle" class="col-sm-3 "style="margin-top: 5px;">Tipo de Vehículo</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="tipoVehiculo" id="tipoVehiculoTitle" style="margin-top: 5px;">
+                                    {% for i in registrosTipoUnidades %}
+                                        <option value="{{ i.ti_id }}">{{ i.ti_nombre}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notaTitle" class="col-sm-3" style="margin-top: 8px;" >Nota</label>
+                            <div class="col-sm-9">
+                                <input type="text"  class="form-control" style="margin-top:-4px;"  id="notaTitle" name="nota" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="imagen2Title" class="col-sm-3" style="margin-top: 8px;" >Imagen 2:</label>
+                            <div class="col-sm-9">
+                                <input type="file"  accept="image/*" id="imagen2Title" name="imagen2" style="margin-top: 8px;" >
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Instalado por</h3>
+                            </div>
+                            <div class="panel-body">
 
-                <div class="form-group">
-                    <label for="provinciaDeTrabajoTitle" class="col-sm-3" style="margin-top: 10px;">Provincia de Trabajo</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="provinciaDeTrabajoTitle" style="margin-top: 10px;" name="provinciaDeTrabajo" value="El ORO">
+                                <div class="form-group">
+                                    <label for="nombreInstaladorTitle" class="col-sm-3" style="margin-top: 8px;">Nombre:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"  class="form-control" id="nombreInstaladorTitle" name="nombreInstalador" >
+                                    </div>
+                                </div>
+                                <br/><br/>
+                                <div class="form-group">
+                                    <label for="cargoInstaladorTitle" class="col-sm-3" style="margin-top: 8px;">Cargo:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"  class="form-control" id="cargoInstaladorTitle" name="cargoInstalador" >
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- fin del panel-->
                     </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Responsable Vehículo</h3>
+                            </div>
+                            <div class="panel-body">
+
+                                <div class="form-group">
+                                    <label for="nombreResponsableTitle" class="col-sm-3" style="margin-top: 8px;">Nombre:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"  class="form-control" id="nombreResponsableTitle" name="nombreResponsable" >
+                                    </div>
+                                </div>
+                                <br/><br/>
+                                <div class="form-group">
+                                    <label for="cargoResponsableTitle" class="col-sm-3" style="margin-top: 8px;">Cargo:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text"  class="form-control" id="cargoResponsableTitle" name="cargoResponsable" >
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div><!-- fin del panel-->
+                    </div>
+                </div><!-- div del row de los paneles-->
+                <div class="row">
+                    <div class="col-md-10"></div>
+                    <div class="col-md-2"><input type="submit" class="btn btn-primary" value="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Aceptar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"/></div>
                 </div>
-
-                <div class="form-group">
-                    <label for="ciudadesTitle" class="col-sm-3">Ciudad de Trabajo</label>
-                    <div class="col-sm-9">
-                        <select class="form-control" name="ciudades" id="ciudadesTitle">
-                            {% for i in registrosCantones %}
-                                <option value="{{ i.ca_id }}">{{ i.ca_nombre }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="lugarDeInstalacionTitle" class="col-sm-3">Lugar de Instalación</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="lugarDeInstalacionTitle" name="lugarDeInstalacion" value="ECU 911">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="fechaDeInstalacionTitle" class="col-sm-3">Fecha de Instalación</label>
-                    <div class="col-sm-9">
-                        <input type="date" class="form-control" id="fechaDeInstalacionTitle" name="fechaDeInstalacion" required="">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="codigoUnidadTitle" class="col-sm-3">Código UNIDAD</label>
-                    <div class="col-sm-5">
-                        <input type="texto" class="form-control uni" id="codigoUnidadTitle" name="codigoUnidad" readonly="true" required>
-                    </div>
-                    <div class="col-sm-2">
-                        <span class="btn glyphicon glyphicon-search" style="color: #000000; background-color: #acbad4" onclick="" data-toggle="modal" data-target="#myModal" title="Buscar"> BUSCAR</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="marcaVehiculoTitle" class="col-sm-3">Marca de Vehículo</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="marcaVehiculoTitle" name="marcaVehiculo" readonly="true">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="modeloVehiculoTitle" class="col-sm-3">Modelo de Vehículo</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="modeloVehiculoTitle" name="modeloVehiculo" readonly="true">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="placaVehiculoTitle" class="col-sm-3" style="margin-top: 10px;">Placa</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="placaVehiculoTitle" name="placaVehiculo" readonly="true">
-                    </div>
-                </div>
-
-                <div class="form-group" >
-                    <label for="anioVehiculoTitle" class="col-sm-3" style="margin-top: 20px;">Año</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="anioVehiculoTitle" name="anioVehiculo" readonly="true" style="margin-top: 9px; ">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="estadoVehiculoTitle" class="col-sm-3" style="margin-top: 5px;">Estado Vehículo</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="estadoVehiculoTitle" name="estadoVehiculo" value="VEHICULO" required style="margin-top: 5px;">
-                    </div>
-                </div>
-            <div>
-                <form action="/ingresarImagen/" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="imagen1Title" class="col-sm-3" style="margin-top: 3px;" >Imagen 1:</label>
-                    <div class="col-sm-9">
-                        <input type="file" accept="image/*" id="imagen1Title" name="imagen1" >
-                    </div>
-                </div>
-                    <button type="submit">hola</button>
-                </form>
-            </div>
-            </div>
-
-            <div class="col-md-6 ">
-
-                <div class="form-group">
-                    <label for="puntoDeInstalacionTitle" class="col-sm-3">Punto de Instalación</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="puntoDeInstalacionTitle" name="puntoDeInstalacion" value="Panel Frontal">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="codigoImeiTitle" class="col-sm-3" style="margin-top: 10px;">Código IMEI</label>
-                    <div class="col-sm-5">
-                        <input type="texto" class="form-control uni" id="codigoImeiTitle" name="codigoImei" readonly="true" required>
-                    </div>
-                    <div class="col-sm-2">
-                        <span class="btn glyphicon glyphicon-search" style="color: #000000; background-color: #acbad4" onclick="" data-toggle="modal" data-target="#myModal2" title="Buscar"> BUSCAR</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="numeroDeSerieTitle" class="col-sm-3" style="margin-top: 5px;">Número de Serie GPS</label>
-                    <div class="col-sm-9">
-                        <input type="texto" style="margin-top: 8px;" class="form-control" id="numerodeSerieTitle" name="numeroDeSerie" readonly="true">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="nombreDeServidorTitle" class="col-sm-3">Nombre de Servidor</label>
-                    <div class="col-sm-9">
-                        <input type="texto" class="form-control" id="nombreDeServidorTitle" name="nombreDeServidor">
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="nroTarjetaSimTitle" class="col-sm-3">N°. Tarjeta SIM</label>
-                    <div class="col-sm-5">
-                        <input type="texto" class="form-control uni"  id="nroTarjetaSimTitle" name="nroTarjeta" readonly="true" required>
-                    </div>
-                    <div class="col-sm-2">
-                        <span class="btn glyphicon glyphicon-search" style="color: #000000; background-color: #acbad4" onclick="" data-toggle="modal" data-target="#myModal3" title="Buscar"> BUSCAR</span>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="nroSerialTarjetaSimTitle" class="col-sm-3" >N°. Serial de Tarjeta Sim</label>
-                    <div class="col-sm-9">
-                        <input type="texto"  class="form-control" style="margin-top: 2px;" id="nroSerialTarjetaSimTitle" name="nroSerialTarjetaSim">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="contraseniaTitle" class="col-sm-3" style="margin-top:8px;">Contraseña</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="contraseniaTitle" name="contrasenia">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="intervaloTransmisionTitle" class="col-sm-3" style="margin-top: 10px;" >Intervalo de trans. datos</label>
-                    <div class="col-sm-9">
-                        <input type="texto"  class="form-control" style="margin-top: 12px;" id="intervaloTransmisionTitle" name="intervaloTransmision">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="voltajeTitle" class="col-sm-3" style="margin-top: 12px;" >Voltaje</label>
-                    <div class="col-sm-9">
-                        <input type="texto"  class="form-control" style="margin-top: 3px;" id="voltajeTitle" name="voltaje" value="12 voltios">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="tipoVehiculoTitle" class="col-sm-3 "style="margin-top: 10px;">Tipo de Vehículo</label>
-                    <div class="col-sm-9">
-                        <select class="form-control" name="tipoVehiculo" id="tipoVehiculoTitle" style="margin-top: 12px;">
-                            {% for i in registrosTipoUnidades %}
-                                <option value="{{ i.ti_id }}">{{ i.ti_nombre}}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="notaTitle" class="col-sm-3" style="margin-top: 8px;" >Nota</label>
-                    <div class="col-sm-9">
-                        <input type="text"  class="form-control"  id="notaTitle" name="nota" >
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="imagen2Title" class="col-sm-3" style="margin-top: 8px;" >Imagen 2:</label>
-                    <div class="col-sm-9">
-                        <input type="file" accept="image/*" id="imagen2Title" name="imagen2" style="margin-top: 5px;" >
-                    </div>
-                </div>
-
-            </div>
-        </div><!--este es el fni del form>
-    </div>
-
-    </div>
-
+            </form>
+        </div>
+    </div><!-- fin del div container -->
 
     <!-- modal de buscar Unidad-->
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
@@ -258,7 +320,7 @@
                                     <td>{{i.un_modelo}}</td>
                                     <td>{{i.un_placa}}</td>
                                     <td>{{i.un_anio}}</td>
-                                    <td style="text-align: center"><span class="btn  glyphicon glyphicon-ok" title="Seleccionar" onclick="pasarDatosUnidad({{i.un_id }} , '{{ i.un_marca }}' , '{{ i.un_modelo }}' , '{{ i.un_placa }}' , '{{ i.un_anio}}' )"></span></td>
+                                    <td style="text-align: center"><span class="btn  glyphicon glyphicon-ok" title="Seleccionar" onclick="pasarDatosUnidad({{i.un_id }} , '{{ i.un_unidad }}','{{ i.un_marca }}' , '{{ i.un_modelo }}' , '{{ i.un_placa }}' , '{{ i.un_anio}}' )"></span></td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -269,7 +331,7 @@
         </div>
     </div>
 
-    </div>
+
     <!-- fin del modal editar -->
 
 
@@ -310,9 +372,50 @@
             </div>
         </div>
     </div>
+    <!-- fin del modal buscarUnidad -->
+
+
+    <!--modal buscar No tarjeta Sim-->
+
+    <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"  data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Seleccionar Linea</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-content table-bordered table-hover " xmlns="http://www.w3.org/1999/html" id="table_id3">
+                            <thead class="btn-primary cabeceraTabla">
+                            <th class="col-md-1">ID Linea</th>
+                            <th class="col-md-1">Numero Linea</th>
+                            <th class="col-md-1">ID SimCard</th>
+                            <th class="col-md-1">SimCard</th>
+                            <th class="col-md-1">OK</th>
+                            </thead>
+                            <tbody>
+                            {% for i in registrosNTarjetaSim %}
+                                <tr>
+                                    <td>{{i.0}}</td>
+                                    <td>{{i.1}}</td>
+                                    <td>{{i.2}}</td>
+                                    <td>{{i.3}}</td>
+                                    <td style="text-align: center"><span class="btn  glyphicon glyphicon-ok" title="Seleccionar" onclick="pasarDatosNoTarjetaSim( '{{i.0}}' , '{{ i.1 }}' , '{{ i.2 }}' , '{{ i.3 }}' )"></span></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
-    <!-- fin del modal editar -->
+
+
+    <!-- fin del modal buscar No tarjeta Sim-->
 {% endblock %}
 
 
@@ -381,6 +484,35 @@
                 }
             } );
 
+            $('#table_id3').dataTable( {
+                "order": [],
+                "aLengthMenu": [[ 25, 50, 75, 100, -1], [ 25, 50, 75, 100, "Todos"]],
+                "language": {
+                    "sProcessing":     "Procesando...",
+                    "sLengthMenu":     "Mostrar _MENU_ registros",
+                    "sZeroRecords":    "No se encontraron resultados",
+                    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+                    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix":    "",
+                    "sSearch":         "Buscar:",
+                    "sUrl":            "",
+                    "sInfoThousands":  ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst":    "Primero",
+                        "sLast":     "Último",
+                        "sNext":     "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+            } );
+
             var now = new Date();
             var day = ("0" + now.getDate()).slice(-2);
             var month = ("0" + (now.getMonth() + 1)).slice(-2);
@@ -388,8 +520,9 @@
             $("#fechaDeInstalacionTitle").val(today);
         });
 
-        function pasarDatosUnidad(id, marca, modelo, placa , anio){
+        function pasarDatosUnidad(id, nombre, marca, modelo, placa , anio){
             $("#codigoUnidadTitle").val(id);
+            $("#nombreUnidadTitle").val(nombre);
             $("#marcaVehiculoTitle").val(marca);
             $("#modeloVehiculoTitle").val(modelo);
             $("#placaVehiculoTitle").val(placa)
@@ -397,13 +530,19 @@
             $('#myModal').modal('hide');
         }
 
-        function pasarDatosGps(id, codigoImei, serieGps, codigoGis){
-
-            $("#codigoImeiTitle").val(codigoImei);
+        function pasarDatosGps(id, imei, serieGps, codigoGis){
+            $("#codigoImeiTitle").val(id);
+            $("#imeiTitle").val(imei);
             $("#numerodeSerieTitle").val(serieGps);
-
             $('#myModal2').modal('hide');
         }
 
+        function pasarDatosNoTarjetaSim(idLinea, numLinea, idSimCard, SimCard){
+            $("#IDnroTarjetaSimTitle").val(idLinea);
+            $("#nroTarjetaSimTitle").val(numLinea);
+            $("#IDSimCardTitle").val(idSimCard);
+            $("#nroSerialTarjetaSimTitle").val(SimCard);
+            $('#myModal3').modal('hide');
+        }
     </script>
 {% endblock %}

@@ -76,6 +76,7 @@ urlpatterns = patterns('',
     #ACTAS
     #********************************
     url(r'^ingresarActa/$', ingresarActa),
+    url(r'^ingresarActa2/$', ingresarActa2),
 
 
     url(r'^ingresarImagen/$', ingresarImagen),

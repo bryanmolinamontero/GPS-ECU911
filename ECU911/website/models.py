@@ -127,6 +127,30 @@ class gps_unidades(models.Model):
         return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.un_id, self.un_estado, self.un_unidad, self.un_codigo_gis, self.un_persona, self.un_telefono, self.un_notas, self.un_placa, self.un_modelo, self.un_uso, self.un_asignado_sistema, self.un_institucion_id.in_nombre , self.un_departamento_id.de_departmentName, self.un_canton_id.ca_nombre,self.un_tipounidad_id.ti_nombre)
 
 
+class gps_imei_linea_unidad(models.Model):
+    uli_id = models.AutoField(primary_key=True)
+    uli_imei = models.CharField(max_length=20, blank=True, null=True)
+    uli_linea = models.CharField(max_length=20, blank=True, null=True)
+    uli_lugar = models.CharField(max_length=50, blank=True, null=True)
+    uli_unidad = models.CharField(max_length=50, blank=True, null=True)
+    uli_fecha_inicio_linea = models.DateTimeField(null=True, blank=True)
+    uli_estado = models.BooleanField(blank=True)
+    uli_fecha_inicio = models.DateTimeField(null=True, blank=True)
+    uli_fecha_fin = models.DateTimeField(null=True, blank=True)
+    uli_fecha_creacion = models.DateTimeField(null=True, blank=True)
+    uli_fecha_modificacion = models.DateTimeField(null=True, blank=True)
+    uli_estado_registro = models.BooleanField(blank=True)
+    uli_linea_id = models.ForeignKey('gps_lineas', db_column='li_id')
+    uli_imei_id = models.ForeignKey('gps_imei', db_column='im_id')
+    uli_unidades_id = models.ForeignKey('gps_unidades', db_column='un_id')
+
+    class Meta:
+        db_table = 'gps_imei_linea_unidad'
+
+    def __unicode__(self):
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % ( self.uli_id, self.uli_imei, self.uli_linea, self.uli_lugar, self.uli_unidad, self.uli_fecha_inicio_linea, self.uli_estado, self.uli_fecha_inicio, self.uli_fecha_fin, self.uli_fecha_creacion, self.uli_fecha_modificacion, self.uli_estado_registro, self.uli_linea_id, self.uli_imei_id, self.uli_unidades_id)
+
+
 class pruebita(models.Model):
 
     imagen=models.ImageField(upload_to='imagenes',help_text='Seleccione la imagen para la noticia...', null=True,blank=True)
@@ -137,6 +161,3 @@ class pruebita(models.Model):
 
     def __unicode__(self):
         return "%s"%(self.imagen)
-
-
-
