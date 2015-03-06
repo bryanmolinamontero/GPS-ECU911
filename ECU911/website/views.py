@@ -450,7 +450,6 @@ def ingresarActa(request):
     registrosUnidades = gps_unidades.objects.all().order_by("un_id")
     registrosGPS = gps_imei.objects.all().order_by("im_id")
     registrosTipoUnidades = gps_tipo_unidades.objects.all().order_by("ti_id")
-
     #vista para el combo no tarjeta sim
     from django.db import connection
     cursor = connection.cursor()
@@ -459,6 +458,55 @@ def ingresarActa(request):
     registrosNTarjetaSim = cursor.fetchall()
 
     return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones, "registrosUnidades":registrosUnidades, "registrosGps":registrosGPS, "registrosTipoUnidades":registrosTipoUnidades, "registrosNTarjetaSim":registrosNTarjetaSim})
+
+def submitIngresarActa(request):
+    if request.POST:
+        institucion = request.POST['institucion']
+        provincia = request.POST['provinciaDeTrabajo']
+        ciudad = request.POST['ciudades']
+        lugarDeInstalacion = request.POST['lugarDeInstalacion']
+        fechaDeInstalacion = request.POST['fechaDeInstalacion']
+        nombreUnidad = request.POST['nombreUnidad']
+        codigoUnidad = request.POST['codigoUnidad']
+        marcaVehiculo = request.POST['marcaVehiculo']
+        modeloVehiculo = request.POST['modeloVehiculo']
+        placaVehiculo = request.POST['placaVehiculo']
+        anioVehiculo = request.POST['anioVehiculo']
+        estadoVehiculo = request.POST['estadoVehiculo']
+        puntoDeInstalacion = request.POST['puntoDeInstalacion']
+        codigoImei = request.POST['codigoImei']
+        imei = request.POST['imei']
+        numeroDeSerie = request.POST['numeroDeSerie']
+        nombreDeServidor = request.POST['nombreDeServidor']
+        IDnroTarjeta = request.POST['IDnroTarjeta']
+        nroTarjeta = request.POST['nroTarjeta']
+        IDSimCard = request.POST['IDSimCard']
+        nroSerialTarjetaSim = request.POST['nroSerialTarjetaSim']
+        contrasenia =  request.POST['contrasenia']
+        intervaloTransmision = request.POST['intervaloTransmision']
+        voltaje = request.POST['voltaje']
+        tipoVehiculo = request.POST['tipoVehiculo']
+        nota = request.POST['nota']
+        try:
+            imagen1 = request.FILES['imagen1']
+        except Exception as ex:
+            print "ERROR en la imagen 1"
+
+        try:
+            imagen2 = request.FILES['imagen2']
+        except Exception as ex:
+            print "ERROR en la imagen 2"
+
+
+        idLinea = gps_lineas.objects.get(li_id=IDnroTarjeta)
+        idImei = gps_imei.objects.get(im_id=codigoImei)
+        idUnidad =gps_unidades.objects.get(un_id=codigoUnidad)
+        registro = gps_imei_linea_unidad(uli_imei = imei, uli_linea = nroTarjeta, uli_lugar = ciudad, uli_unidad = nombreUnidad, uli_fecha_inicio_linea = fechaDeInstalacion, uli_estado = estadoVehiculo, uli_fecha =  fechaDeInstalacion, uli_fecha_inicio = fechaDeInstalacion, uli_fecha_fin = fechaDeInstalacion, uli_fecha_creacion = fechaDeInstalacion, uli_fecha_modificacion= fechaDeInstalacion, uli_estado_registro = estadoVehiculo, uli_linea_id=idLinea, uli_imei_id=idImei, uli_unidades_id=idUnidad)
+        registro.save()
+
+
+    else:
+        return HttpResponseRedirect('/ingresarActa/')
 
 
 #**********************************
@@ -490,3 +538,13 @@ def ingresarActa2(req):
     cursor.execute(sql)
     results = cursor.fetchall()
     return render_to_response('pr.html',{"lst":results})
+
+from django.core import serializers
+def buscarDepartamentoPorInstitucion(request):
+    if request.GET:
+        id=request.GET['id']
+        departamentos= gps_departamento.objects.filter(de_id_institucion=id)
+        data = serializers.serialize('json', departamentos,fields=('de_departmentName'))
+        return HttpResponse(data, mimetype='application/json')
+    else:
+        return HttpResponseRedirect("/ingresarUnidad/")

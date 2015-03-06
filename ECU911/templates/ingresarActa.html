@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label for="institucionTitle" class="col-sm-3 "style="margin-top: 10px;">Institución</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="instituciones" id="institucionTitle">
+                                <select class="form-control" name="institucion" id="institucionTitle">
                                     {% for i in registrosInstituciones %}
                                         <option value="{{ i.in_id }}">{{ i.in_nombre }}</option>
                                     {% endfor %}
@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <label for="fechaDeInstalacionTitle" class="col-sm-3">Fecha de Instalación</label>
                             <div class="col-sm-9">
-                                <input type="date" class="form-control" id="fechaDeInstalacionTitle" name="fechaDeInstalacion" required="">
+                                <input type="datetime-local" class="form-control" id="fechaDeInstalacionTitle" name="fechaDeInstalacion" required="">
                             </div>
                         </div>
 
@@ -423,7 +423,9 @@
     <script>
         $("#inicio").removeClass("active");
         $("#ingresarActa").addClass("active");
+
         $(document).ready(function() {
+            asignarFecha();
             $('#table_id').dataTable( {
                 "order": [],
                 "aLengthMenu": [[ 25, 50, 75, 100, -1], [ 25, 50, 75, 100, "Todos"]],
@@ -512,12 +514,6 @@
                     }
                 }
             } );
-
-            var now = new Date();
-            var day = ("0" + now.getDate()).slice(-2);
-            var month = ("0" + (now.getMonth() + 1)).slice(-2);
-            var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-            $("#fechaDeInstalacionTitle").val(today);
         });
 
         function pasarDatosUnidad(id, nombre, marca, modelo, placa , anio){
@@ -543,6 +539,14 @@
             $("#IDSimCardTitle").val(idSimCard);
             $("#nroSerialTarjetaSimTitle").val(SimCard);
             $('#myModal3').modal('hide');
+        }
+        function asignarFecha(){
+            var now = new Date();
+            var day = ("0" + now.getDate()).slice(-2);
+            var month = ("0" + (now.getMonth() + 1)).slice(-2);
+            var today = now.getFullYear() + "-" + (month) + "-" + (day) + "T" + now.getHours() + ":" + now.getMinutes() + ":00";
+            console.log(today);
+            document.getElementById('fechaDeInstalacionTitle').value = today;
         }
     </script>
 {% endblock %}

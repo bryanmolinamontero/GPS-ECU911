@@ -82,12 +82,13 @@ class gps_departamento(models.Model):
     de_departmentFax = models.CharField(max_length=20, blank=True, null=True)
     de_departmentEmail = models.CharField(max_length=50, blank=True, null=True)
     de_notas = models.CharField(max_length=250, blank=True, null=True)
+    de_id_institucion = models.ForeignKey('gps_instituciones', db_column='in_id')
 
     class Meta:
         db_table = 'gps_departamento'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s, %s, %s' % (self.de_id, self.de_departmentId_gis, self.de_departmentName, self.de_EncargadoName, self.de_departmentdireccion, self.de_departmentPhone, self.de_departmentFax, self.de_departmentEmail, self.de_notas)
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.de_id, self.de_departmentId_gis, self.de_departmentName, self.de_EncargadoName, self.de_departmentdireccion, self.de_departmentPhone, self.de_departmentFax, self.de_departmentEmail, self.de_notas, self.de_id_institucion)
 
 class gps_cantones(models.Model):
     ca_id = models.AutoField(primary_key=True)
@@ -134,7 +135,8 @@ class gps_imei_linea_unidad(models.Model):
     uli_lugar = models.CharField(max_length=50, blank=True, null=True)
     uli_unidad = models.CharField(max_length=50, blank=True, null=True)
     uli_fecha_inicio_linea = models.DateTimeField(null=True, blank=True)
-    uli_estado = models.BooleanField(blank=True)
+    uli_estado = models.CharField(max_length=20, blank=True, null=True)
+    uli_fecha = models.DateTimeField(null=True, blank=True)
     uli_fecha_inicio = models.DateTimeField(null=True, blank=True)
     uli_fecha_fin = models.DateTimeField(null=True, blank=True)
     uli_fecha_creacion = models.DateTimeField(null=True, blank=True)
@@ -148,7 +150,12 @@ class gps_imei_linea_unidad(models.Model):
         db_table = 'gps_imei_linea_unidad'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % ( self.uli_id, self.uli_imei, self.uli_linea, self.uli_lugar, self.uli_unidad, self.uli_fecha_inicio_linea, self.uli_estado, self.uli_fecha_inicio, self.uli_fecha_fin, self.uli_fecha_creacion, self.uli_fecha_modificacion, self.uli_estado_registro, self.uli_linea_id, self.uli_imei_id, self.uli_unidades_id)
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % ( self.uli_id, self.uli_imei, self.uli_linea, self.uli_lugar, self.uli_unidad, self.uli_fecha_inicio_linea, self.uli_estado, self.uli_fecha,  self.uli_fecha_inicio, self.uli_fecha_fin, self.uli_fecha_creacion, self.uli_fecha_modificacion, self.uli_estado_registro, self.uli_linea_id, self.uli_imei_id, self.uli_unidades_id)
+
+class gps_actas(models.Model):
+    ac_id = models.AutoField(primary_key=True)
+    ac_tipo = models.CharField(max_length=15, null=True, blank=True)
+
 
 
 class pruebita(models.Model):

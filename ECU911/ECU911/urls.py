@@ -76,9 +76,8 @@ urlpatterns = patterns('',
     #ACTAS
     #********************************
     url(r'^ingresarActa/$', ingresarActa),
-    url(r'^ingresarActa2/$', ingresarActa2),
-
-
+    url(r'^submitIngresarActa/$', submitIngresarActa),
     url(r'^ingresarImagen/$', ingresarImagen),
+    url(r'^buscarDepartamentoPorInstitucion/$', buscarDepartamentoPorInstitucion),
 
 )
