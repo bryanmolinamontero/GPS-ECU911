@@ -1,5 +1,6 @@
 # Create your views here.
 from django.http import HttpResponseRedirect, HttpResponse
+from django.db import transaction
 from django.shortcuts import render_to_response
 
 from models import *
@@ -444,6 +445,9 @@ def submitCambiarSimCard(request):
 
 #*************** ACTAS ************
 
+
+
+
 def ingresarActa(request):
     registrosInstituciones = gps_instituciones.objects.all().order_by("in_id")
     registrosCantones = gps_cantones.objects.all().order_by("ca_id")
@@ -459,13 +463,16 @@ def ingresarActa(request):
 
     return  render_to_response('ingresarActa.html', {"registrosInstituciones":registrosInstituciones, "registrosCantones":registrosCantones, "registrosUnidades":registrosUnidades, "registrosGps":registrosGPS, "registrosTipoUnidades":registrosTipoUnidades, "registrosNTarjetaSim":registrosNTarjetaSim})
 
+@transaction.commit_manually
 def submitIngresarActa(request):
     if request.POST:
         institucion = request.POST['institucion']
+        departamento = request.POST['departamentos']
         provincia = request.POST['provinciaDeTrabajo']
-        ciudad = request.POST['ciudades']
+        ciudad = request.POST['ciudades'] #es el CANTON
         lugarDeInstalacion = request.POST['lugarDeInstalacion']
-        fechaDeInstalacion = request.POST['fechaDeInstalacion']
+        fechaDeInstalacion = request.POST['fechaDeInstalacion'] # solo date
+        fechaDeCreacion = request.POST['fechaDeCreacion'] #datetime
         nombreUnidad = request.POST['nombreUnidad']
         codigoUnidad = request.POST['codigoUnidad']
         marcaVehiculo = request.POST['marcaVehiculo']
@@ -479,7 +486,7 @@ def submitIngresarActa(request):
         numeroDeSerie = request.POST['numeroDeSerie']
         nombreDeServidor = request.POST['nombreDeServidor']
         IDnroTarjeta = request.POST['IDnroTarjeta']
-        nroTarjeta = request.POST['nroTarjeta']
+        nroTarjeta = request.POST['nroTarjeta'] #es la LINEA
         IDSimCard = request.POST['IDSimCard']
         nroSerialTarjetaSim = request.POST['nroSerialTarjetaSim']
         contrasenia =  request.POST['contrasenia']
@@ -487,27 +494,50 @@ def submitIngresarActa(request):
         voltaje = request.POST['voltaje']
         tipoVehiculo = request.POST['tipoVehiculo']
         nota = request.POST['nota']
+
+        imagen1 = None
+        imagen2 = None
+
+
         try:
             imagen1 = request.FILES['imagen1']
         except Exception as ex:
             print "ERROR en la imagen 1"
-
         try:
             imagen2 = request.FILES['imagen2']
         except Exception as ex:
             print "ERROR en la imagen 2"
 
 
+        #*** dos paneles de abajo***
+        nombreInstalador = request.POST['nombreInstalador']
+        cargoInstalador = request.POST['cargoInstalador']
+        nombreResponsable = request.POST['nombreResponsable']
+        cargoResponsable = request.POST['cargoResponsable']
+
+        #***************************
+
         idLinea = gps_lineas.objects.get(li_id=IDnroTarjeta)
         idImei = gps_imei.objects.get(im_id=codigoImei)
         idUnidad =gps_unidades.objects.get(un_id=codigoUnidad)
-        registro = gps_imei_linea_unidad(uli_imei = imei, uli_linea = nroTarjeta, uli_lugar = ciudad, uli_unidad = nombreUnidad, uli_fecha_inicio_linea = fechaDeInstalacion, uli_estado = estadoVehiculo, uli_fecha =  fechaDeInstalacion, uli_fecha_inicio = fechaDeInstalacion, uli_fecha_fin = fechaDeInstalacion, uli_fecha_creacion = fechaDeInstalacion, uli_fecha_modificacion= fechaDeInstalacion, uli_estado_registro = estadoVehiculo, uli_linea_id=idLinea, uli_imei_id=idImei, uli_unidades_id=idUnidad)
-        registro.save()
+        idGpsSimCard = gps_sim_card.objects.get(si_id=IDSimCard)
+        idDepartamento = gps_departamento.objects.get(de_id=departamento)
 
+        try:
+            registroULI = gps_imei_linea_unidad(uli_imei=imei, uli_linea=nroTarjeta, uli_canton = ciudad, uli_unidad = nombreUnidad, uli_estado_unidad =estadoVehiculo, uli_fecha_inicio = fechaDeInstalacion, uli_estado_actual="ACTIVO",  uli_fecha_creacion=fechaDeCreacion, uli_fecha_modificacion=fechaDeCreacion, uli_estado_registro = True, uli_linea_id=idLinea, uli_imei_id = idImei, uli_unidades_id = idUnidad, uli_sim_card_id= idGpsSimCard, uli_departamento_id = idDepartamento)
+            registroULI.save()
+            extraerInstitucion = gps_instituciones.objects.get(in_id=institucion)
+            idUli = gps_imei_linea_unidad.objects.get(uli_imei=imei, uli_linea=nroTarjeta, uli_canton = ciudad, uli_unidad = nombreUnidad,uli_estado_unidad =estadoVehiculo, uli_fecha_inicio = fechaDeInstalacion)
+            registroActas = gps_actas(ac_tipo = "", ac_fecha_instalacion = fechaDeInstalacion, ac_punto_instalacion = puntoDeInstalacion, ac_nombre_servidor = nombreDeServidor, ac_contrasenia = contrasenia, ac_intervalo = intervaloTransmision, ac_voltaje = voltaje, ac_nota = nota, ac_canton = ciudad, ac_provincia = provincia, ac_imei = imei, ac_serie_imei= numeroDeSerie, ac_linea= nroTarjeta, ac_sim_card= nroSerialTarjetaSim, ac_unidad = nombreUnidad, ac_institucion= extraerInstitucion.in_nombre, ac_departamento = idDepartamento.de_departmentName, ac_marca_unidad= marcaVehiculo, ac_modelo_unidad= modeloVehiculo, ac_placa_unidad= placaVehiculo, ac_anio_unidad= anioVehiculo, ac_estado_unidad = estadoVehiculo, ac_tecnico = nombreInstalador, ac_cargo_tecnico = cargoInstalador, ac_responsable_unidad = nombreResponsable, ac_cargo_responsable = cargoResponsable, ac_estado_registro = True, ac_uli_id = idUli , ac_imagen1 =  imagen1, ac_imagen2 = imagen2)
+            registroActas.save()
+            transaction.commit()
 
+            return render_to_response('mensajes.html', {"mensaje":"Acta Guardada Correctamente... Redireccionando, por favor espere...", "pagina":"/ingresarActa/"})
+        except:
+            transaction.rollback()
+            return render_to_response('mensajes.html', {"mensaje":"Ha ocurrido un error...", "pagina":"/ingresarActa/"})
     else:
         return HttpResponseRedirect('/ingresarActa/')
-
 
 #**********************************
 
@@ -523,7 +553,6 @@ def ingresarImagen(request):
     print "*********************"
     registro = pruebita(imagen= imagen)
     registro.save()
-
     return HttpResponse("sda")
 
 
@@ -539,6 +568,7 @@ def ingresarActa2(req):
     results = cursor.fetchall()
     return render_to_response('pr.html',{"lst":results})
 
+
 from django.core import serializers
 def buscarDepartamentoPorInstitucion(request):
     if request.GET:
@@ -548,3 +578,56 @@ def buscarDepartamentoPorInstitucion(request):
         return HttpResponse(data, mimetype='application/json')
     else:
         return HttpResponseRedirect("/ingresarUnidad/")
+
+
+
+def verificarUnidad(request):
+    if request.GET:
+        print "*****************"
+        print "*****************"
+        print "*****************"
+        id=request.GET['id']#select * from gps_imei_linea_unidad where un_id=9 and  uli_estado_actual='ACTIVO'
+        print "1"
+        unidades= gps_imei_linea_unidad.objects.filter(uli_unidades_id=id, uli_estado_actual='ACTIVO')
+        print "2"
+        cont = 0
+        print "3"
+        for i in unidades:
+            cont = cont + 1
+        print "4"
+        if cont == 0:
+            print "5"
+            return HttpResponse("FALSE") #CUANDO NO HAY REGISTROS EN ESE SELECT Y SI LO PUEDE ESCOGER
+        else:
+            print "6"
+            return HttpResponse("TRUE") #CUANDO SI HAY REGISTROS EN ESE SELECT Y NO LO PUEDE ESCOGER
+    else:
+        return HttpResponseRedirect("/ingresarActa/")
+
+def verificarImei(request):
+    if request.GET:
+        id=request.GET['id']#select * from gps_imei_linea_unidad where un_id=9 and  uli_estado_actual='ACTIVO'
+        imeis= gps_imei_linea_unidad.objects.filter(uli_imei_id=id, uli_estado_actual='ACTIVO')
+        cont = 0
+        for i in imeis:
+            cont = cont + 1
+        if cont == 0:
+            return HttpResponse("FALSE") #CUANDO NO HAY REGISTROS EN ESE SELECT Y SI LO PUEDE ESCOGER
+        else:
+            return HttpResponse("TRUE") #CUANDO SI HAY REGISTROS EN ESE SELECT Y NO LO PUEDE ESCOGER
+    else:
+        return HttpResponseRedirect("/ingresarActa/")
+
+def verificarNroTarjetaSim(request):
+    if request.GET:
+        id=request.GET['id']#select * from gps_imei_linea_unidad where un_id=9 and  uli_estado_actual='ACTIVO'
+        lineas= gps_imei_linea_unidad.objects.filter(uli_linea_id=id, uli_estado_actual='ACTIVO')
+        cont = 0
+        for i in lineas:
+            cont = cont + 1
+        if cont == 0:
+            return HttpResponse("FALSE") #CUANDO NO HAY REGISTROS EN ESE SELECT Y SI LO PUEDE ESCOGER
+        else:
+            return HttpResponse("TRUE") #CUANDO SI HAY REGISTROS EN ESE SELECT Y NO LO PUEDE ESCOGER
+    else:
+        return HttpResponseRedirect("/ingresarActa/")

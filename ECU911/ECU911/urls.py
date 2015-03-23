@@ -79,5 +79,9 @@ urlpatterns = patterns('',
     url(r'^submitIngresarActa/$', submitIngresarActa),
     url(r'^ingresarImagen/$', ingresarImagen),
     url(r'^buscarDepartamentoPorInstitucion/$', buscarDepartamentoPorInstitucion),
+    #************* VALIDACIONES
+    url(r'^verificarUnidad/$', verificarUnidad),
+    url(r'^verificarImei/$', verificarImei),
+    url(r'^verificarNroTarjetaSim/$', verificarNroTarjetaSim),
 
 )

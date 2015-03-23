@@ -132,30 +132,81 @@ class gps_imei_linea_unidad(models.Model):
     uli_id = models.AutoField(primary_key=True)
     uli_imei = models.CharField(max_length=20, blank=True, null=True)
     uli_linea = models.CharField(max_length=20, blank=True, null=True)
-    uli_lugar = models.CharField(max_length=50, blank=True, null=True)
+    uli_canton = models.CharField(max_length=50, blank=True, null=True)
     uli_unidad = models.CharField(max_length=50, blank=True, null=True)
-    uli_fecha_inicio_linea = models.DateTimeField(null=True, blank=True)
-    uli_estado = models.CharField(max_length=20, blank=True, null=True)
-    uli_fecha = models.DateTimeField(null=True, blank=True)
-    uli_fecha_inicio = models.DateTimeField(null=True, blank=True)
-    uli_fecha_fin = models.DateTimeField(null=True, blank=True)
-    uli_fecha_creacion = models.DateTimeField(null=True, blank=True)
-    uli_fecha_modificacion = models.DateTimeField(null=True, blank=True)
-    uli_estado_registro = models.BooleanField(blank=True)
+    uli_estado_unidad = models.CharField(max_length=20, blank=True, null=True)
+    uli_fecha_inicio = models.DateField(null=True, blank=True) #esta es solo date la del formulario
+    uli_fecha_fin = models.DateField(null=True, blank=True) #tb es date y se guarda en blanco
+    uli_estado_actual = models.CharField(max_length=20, blank=True, null=True)
+
+    uli_fecha_creacion = models.DateTimeField(null=True, blank=True) #en el insert fecha de sstemas
+    uli_fecha_modificacion = models.DateTimeField(null=True, blank=True) #igual
+    uli_estado_registro = models.BooleanField(blank=True) # True Este es solo para ver si esta eliminado
+
     uli_linea_id = models.ForeignKey('gps_lineas', db_column='li_id')
     uli_imei_id = models.ForeignKey('gps_imei', db_column='im_id')
     uli_unidades_id = models.ForeignKey('gps_unidades', db_column='un_id')
+    uli_sim_card_id = models.ForeignKey('gps_sim_card', db_column='si_id')
+    uli_departamento_id =models.ForeignKey('gps_departamento', db_column='de_id')
 
     class Meta:
         db_table = 'gps_imei_linea_unidad'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % ( self.uli_id, self.uli_imei, self.uli_linea, self.uli_lugar, self.uli_unidad, self.uli_fecha_inicio_linea, self.uli_estado, self.uli_fecha,  self.uli_fecha_inicio, self.uli_fecha_fin, self.uli_fecha_creacion, self.uli_fecha_modificacion, self.uli_estado_registro, self.uli_linea_id, self.uli_imei_id, self.uli_unidades_id)
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.uli_id, self.uli_imei, self.uli_linea, self.uli_canton, self.uli_unidad, self.uli_estado_unidad, self.uli_fecha_inicio, self.uli_fecha_fin, self.uli_fecha_creacion, self.uli_fecha_modificacion, self.uli_estado_registro, self.uli_linea_id, self.uli_imei_id, self.uli_unidades_id, self.uli_sim_card_id, self.uli_departamento_id)
+
+
 
 class gps_actas(models.Model):
     ac_id = models.AutoField(primary_key=True)
-    ac_tipo = models.CharField(max_length=15, null=True, blank=True)
+    ac_tipo = models.CharField(max_length=15, blank=True, null=True)
+    ac_fecha_instalacion = models.DateField(null=True, blank=True) #esta es solo date la del formulario
+    ac_punto_instalacion = models.CharField(max_length=25, blank=True, null=True)
+    ac_nombre_servidor = models.CharField(max_length=30, blank=True, null=True)
+    ac_contrasenia = models.CharField(max_length=25, blank=True, null=True)
+    ac_intervalo = models.CharField(max_length=20, blank=True, null=True)
+    ac_voltaje = models.CharField(max_length=15, blank=True, null=True)
+    ac_nota = models.CharField(max_length=250, blank=True, null=True)
 
+    ac_canton = models.CharField(max_length=50, blank=True, null=True)
+    ac_provincia = models.CharField(max_length=50, blank=True, null=True)
+    ac_imei = models.CharField(max_length=50, blank=True, null=True)
+    ac_serie_imei = models.CharField(max_length=50, blank=True, null=True)
+    ac_linea = models.CharField(max_length=25, blank=True, null=True)
+    ac_sim_card = models.CharField(max_length=25, blank=True, null=True)
+    ac_unidad = models.CharField(max_length=50, blank=True, null=True)
+    ac_institucion = models.CharField(max_length=150, blank=True, null=True)
+    ac_departamento = models.CharField(max_length=250, blank=True, null=True)
+
+    ac_marca_unidad = models.CharField(max_length=40, blank=True, null=True)
+    ac_modelo_unidad = models.CharField(max_length=100, blank=True, null=True)
+    ac_placa_unidad = models.CharField(max_length=50, blank=True, null=True)
+    ac_anio_unidad = models.CharField(max_length=10, blank=True, null=True)
+    ac_estado_unidad = models.CharField(max_length=20, blank=True, null=True)
+
+    ac_tecnico = models.CharField(max_length=100, blank=True, null=True)
+    ac_cargo_tecnico = models.CharField(max_length=100, blank=True, null=True)
+    ac_responsable_unidad = models.CharField(max_length=100, blank=True, null=True)
+    ac_cargo_responsable = models.CharField(max_length=100, blank=True, null=True)
+
+    ac_imagen1 = models.ImageField(upload_to='imagenes',help_text='Seleccione la imagen para el acta...', null=True,blank=True)
+    ac_imagen2 = models.ImageField(upload_to='imagenes',help_text='Seleccione la imagen para el acta...', null=True,blank=True)
+
+
+    ac_fecha_creacion = models.DateTimeField(null=True, blank=True) #en el insert fecha de sstemas que se hara mediante un trigger en la base de datos
+    ac_fecha_modificacion = models.DateTimeField(null=True, blank=True) #igual
+    ac_estado_registro = models.BooleanField(blank=True) # True Este es solo para ver si esta eliminado
+    ac_usuario = models.CharField(max_length=100, blank=True, null=True) #el usuario que inicia sesion
+    ac_uli_id =models.ForeignKey('gps_imei_linea_unidad', db_column='uli_id')
+
+
+
+
+    class Meta:
+        db_table = 'gps_actas'
+
+    def __unicode__(self):
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.ac_id, self.ac_tipo, self.ac_fecha_instalacion, self.ac_punto_instalacion, self.ac_nombre_servidor, self.ac_contrasenia, self.ac_intervalo, self.ac_voltaje, self.ac_nota, self.ac_canton, self.ac_provincia, self.ac_imei, self.ac_serie_imei, self.ac_linea, self.ac_sim_card, self.ac_unidad, self.ac_institucion, self.ac_departamento, self.ac_marca_unidad, self.ac_modelo_unidad, self.ac_placa_unidad, self.ac_anio_unidad, self.ac_estado_unidad, self.ac_tecnico, self.ac_cargo_tecnico, self.ac_responsable_unidad, self.ac_cargo_responsable,self.ac_fecha_creacion, self.ac_fecha_modificacion, self.ac_estado_registro, self.ac_usuario, self.uli_id)
 
 
 class pruebita(models.Model):
