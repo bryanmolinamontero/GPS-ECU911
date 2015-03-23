@@ -183,6 +183,7 @@ class gps_actas(models.Model):
     ac_placa_unidad = models.CharField(max_length=50, blank=True, null=True)
     ac_anio_unidad = models.CharField(max_length=10, blank=True, null=True)
     ac_estado_unidad = models.CharField(max_length=20, blank=True, null=True)
+    ac_tipo_vehiculo = models.CharField(max_length=20, blank=True, null=True)
 
     ac_tecnico = models.CharField(max_length=100, blank=True, null=True)
     ac_cargo_tecnico = models.CharField(max_length=100, blank=True, null=True)

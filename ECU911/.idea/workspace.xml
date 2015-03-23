@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ingresarActa.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ingresarActa.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/ingresarActa.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.3076923" vertical-offset="425" max-vertical-offset="11543">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.519337" vertical-offset="3739" max-vertical-offset="11543">
+              <caret line="231" column="69" selection-start-line="231" selection-start-column="69" selection-end-line="231" selection-end-column="69" />
               <folding />
             </state>
           </provider>
@@ -51,8 +51,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/website/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2901" max-vertical-offset="3842">
-              <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2901" max-vertical-offset="3859">
+              <caret line="189" column="23" selection-start-line="189" selection-start-column="23" selection-end-line="189" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -62,21 +62,21 @@
         <entry file="file://$PROJECT_DIR$/ECU911/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2771">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/website/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6494845" vertical-offset="9183" max-vertical-offset="10846">
-              <caret line="555" column="30" selection-start-line="555" selection-start-column="30" selection-end-line="555" selection-end-column="30" />
+            <state vertical-scroll-proportion="-0.65384614" vertical-offset="8364" max-vertical-offset="10846">
+              <caret line="493" column="0" selection-start-line="493" selection-start-column="0" selection-end-line="493" selection-end-column="0" />
               <folding>
                 <element signature="e#26#84#0" expanded="true" />
-                <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-                <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
+                <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+                <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
               </folding>
             </state>
           </provider>
@@ -120,11 +120,11 @@
         <option value="$PROJECT_DIR$/templates/ingresarUnidad.html" />
         <option value="$PROJECT_DIR$/ECU911/settings.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/website/models.py" />
         <option value="$PROJECT_DIR$/ECU911/urls.py" />
         <option value="$PROJECT_DIR$/templates/mensajes.html" />
-        <option value="$PROJECT_DIR$/templates/ingresarActa.html" />
+        <option value="$PROJECT_DIR$/website/models.py" />
         <option value="$PROJECT_DIR$/website/views.py" />
+        <option value="$PROJECT_DIR$/templates/ingresarActa.html" />
       </list>
     </option>
   </component>
@@ -521,7 +521,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -531,7 +531,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28661418" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31968504" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16105418" sideWeight="0.6781609" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16105418" sideWeight="0.6781609" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -626,8 +626,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#26#84#0" expanded="true" />
-            <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-            <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
           </folding>
         </state>
       </provider>
@@ -664,8 +664,8 @@
           <caret line="594" column="38" selection-start-line="594" selection-start-column="38" selection-end-line="594" selection-end-column="38" />
           <folding>
             <element signature="e#26#84#0" expanded="true" />
-            <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-            <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
           </folding>
         </state>
       </provider>
@@ -676,8 +676,8 @@
           <caret line="548" column="9" selection-start-line="548" selection-start-column="9" selection-end-line="548" selection-end-column="9" />
           <folding>
             <element signature="e#26#84#0" expanded="true" />
-            <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-            <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
           </folding>
         </state>
       </provider>
@@ -731,8 +731,8 @@
           <caret line="460" column="0" selection-start-line="460" selection-start-column="0" selection-end-line="460" selection-end-column="0" />
           <folding>
             <element signature="e#26#84#0" expanded="true" />
-            <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-            <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
           </folding>
         </state>
       </provider>
@@ -784,8 +784,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#26#84#0" expanded="true" />
-            <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-            <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
           </folding>
         </state>
       </provider>
@@ -830,8 +830,8 @@
           <caret line="463" column="14" selection-start-line="463" selection-start-column="14" selection-end-line="463" selection-end-column="14" />
           <folding>
             <element signature="e#26#84#0" expanded="true" />
-            <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-            <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
           </folding>
         </state>
       </provider>
@@ -965,18 +965,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/models.py">
+    <entry file="file://$PROJECT_DIR$/ECU911/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2901" max-vertical-offset="3842">
-          <caret line="190" column="0" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2771">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ECU911/settings.py">
+    <entry file="file://$PROJECT_DIR$/website/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2771">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2901" max-vertical-offset="3859">
+          <caret line="189" column="23" selection-start-line="189" selection-start-column="23" selection-end-line="189" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -989,23 +989,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/ingresarActa.html">
+    <entry file="file://$PROJECT_DIR$/website/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3076923" vertical-offset="425" max-vertical-offset="11543">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-0.65384614" vertical-offset="8364" max-vertical-offset="10846">
+          <caret line="493" column="0" selection-start-line="493" selection-start-column="0" selection-end-line="493" selection-end-column="0" />
+          <folding>
+            <element signature="e#26#84#0" expanded="true" />
+            <marker date="1427132903526" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
+            <marker date="1427132903526" expanded="true" signature="24292:24455" placeholder="select gps_l..gps_lineas..." />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/website/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/ingresarActa.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6494845" vertical-offset="9183" max-vertical-offset="10846">
-          <caret line="555" column="30" selection-start-line="555" selection-start-column="30" selection-end-line="555" selection-end-column="30" />
-          <folding>
-            <element signature="e#26#84#0" expanded="true" />
-            <marker date="1427131940405" expanded="true" signature="18239:18402" placeholder="select gps_l..gps_lineas..." />
-            <marker date="1427131940405" expanded="true" signature="24258:24421" placeholder="select gps_l..gps_lineas..." />
-          </folding>
+        <state vertical-scroll-proportion="0.519337" vertical-offset="3739" max-vertical-offset="11543">
+          <caret line="231" column="69" selection-start-line="231" selection-start-column="69" selection-end-line="231" selection-end-column="69" />
+          <folding />
         </state>
       </provider>
     </entry>
