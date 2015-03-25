@@ -1,0 +1,273 @@
+{% extends 'base.html'%}
+
+{% block head %}
+    <style>
+
+        .q2{
+            background-color:black;
+        }
+
+        .q3{
+            color: white;
+        }
+        td{
+            width: 25%;
+        }
+
+    </style>
+
+{% endblock %}
+
+{% block body %}
+    <div class="container" style="text-align: right">
+    <br/><a href="javascript:imprimir('print')"><span class="glyphicon glyphicon-print"></span></a>
+    </div>
+
+    <div class="container" id="print">
+
+        <table style="width: 100%">
+            <tr>
+                <td style="width: 50%;"><img style="text-align: center;" src="/static/img/logo2.png" alt=""/></td>
+                <td style="width: 50%; border: 1px solid;font-weight: bold">ACTA DE ENTREGA Y RECEPCIÓN <br/> Equipos Periféricos para <br/> Centro ECU-911 Machala</td>
+            </tr>
+        </table>
+
+        <br/>
+
+        <table border="1" style="width:100%">
+            <tr>
+                <td class="subtitulo">Institución</td>
+                <td>{{ registro_acta.ac_institucion }}</td>
+
+                <td class="subtitulo">Punto de Instalación</td>
+                <td>{{ registro_acta.ac_punto_instalacion }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Provincia de trabajo</td>
+                <td>{{ registro_acta.ac_provincia }}</td>
+
+                <td class="subtitulo">Numero de Serie del GPS</td>
+                <td>{{ registro_acta.ac_serie_imei }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Ciudad de Trabajo</td>
+                <td>{{ registro_acta.ac_canton  }}</td>
+
+                <td class="subtitulo">Código IMEI</td>
+                <td>{{ registro_acta.ac_imei }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Lugar de Instalación</td>
+                <td>{{ registro_acta.ac_lugar_de_instalacion }}</td>
+
+                <td class="subtitulo">Nombre de Servidor</td>
+                <td>{{ registro_acta.ac_nombre_servidor }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Fecha de Instalación</td>
+                <td>{{ registro_acta.ac_fecha_instalacion }}</td>
+
+                <td class="subtitulo">Nro Serial de Tarjeta SIM</td>
+                <td>{{ registro_acta.ac_sim_card }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Marca de Vehículo</td>
+                <td>{{ registro_acta.ac_marca_unidad }}</td>
+
+                <td class="subtitulo">Nro. De Tarjeta SIM</td>
+                <td>{{ registro_acta.ac_linea }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Modelo de Vehículo</td>
+                <td>{{ registro_acta.ac_modelo_unidad }}</td>
+
+                <td class="subtitulo">Contraseña</td>
+                <td>{{ registro_acta.ac_contrasenia }}</td>
+
+            </tr>
+
+
+            <tr>
+
+                <td class="subtitulo">Placa</td>
+                <td>{{ registro_acta.ac_placa_unidad }}</td>
+
+                <td class="subtitulo">Intervalo de Trans de datos</td>
+                <td>{{ registro_acta.ac_intervalo}}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Año</td>
+                <td>{{ registro_acta.ac_anio_unidad }}</td>
+
+                <td class="subtitulo">Voltaje</td>
+                <td>{{ registro_acta.ac_voltaje}}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Estado de Vehículo</td>
+                <td>{{ registro_acta.ac_estado_unidad }}</td>
+
+                <td class="subtitulo">Tipo de Vehículo</td>
+                <td>{{ registro_acta.ac_tipo_vehiculo}}</td>
+
+            </tr>
+
+            <tr>
+
+                <td class="subtitulo">Nombre de la Unidad</td>
+                <td>{{ registro_acta.ac_unidad }}</td>
+
+                <td class="subtitulo">Nota</td>
+                <td>{{ registro_acta.ac_nota}}</td>
+
+            </tr>
+
+        </table>
+
+        <br/>
+
+
+
+        <h4>Instalación</h4>
+        <table border="1" style="width:100%">
+            <tr>
+                <td class="subtitulo">Conformidad <br/>con <br/> la Instalación)</td>
+                <td style="width: 12.5%">
+                    SI
+                </td>
+                <td style="width:12.5%">
+                    NO
+                </td>
+
+
+                <td class="subtitulo">Nota</td>
+                <td ></td>
+
+            </tr>
+
+        </table>
+
+
+        <br/>
+        <table border="1" style="width:100%">
+            <tr>
+                <td>
+                    Foto 1 /Vehículo
+                </td>
+                <td>
+                    Foto 1 /Punto de Instalación
+                </td>
+            </tr>
+            <tr>
+                <td class="subtitulo"><img width="100%" src="/media/{{ registro_acta.ac_imagen1 }}" alt=""/></td>
+                <td class="subtitulo"><img width="100%" src="/media/{{ registro_acta.ac_imagen2 }}" alt=""/></td>
+            </tr>
+
+        </table>
+
+        <br/>
+
+        <table border="1" style="width:100%">
+            <tr>
+
+                <td>
+
+                </td>
+                <td>
+                    Delegado por ECU911
+                </td>
+                <td>
+                    Delegado Entidad receptora
+                </td>
+                <td>
+                    Responsable del Vehículo
+                </td>
+            </tr>
+
+            <tr>
+                <td>Nombre:</td>
+                <td>{{ registro_acta.ac_tecnico }}</td>
+                <td></td>
+                <td>{{ registro_acta.ac_responsable_unidad }}</td>
+            </tr>
+
+
+            <tr>
+                <td>Cargo:</td>
+                <td>{{ registro_acta.ac_cargo_tecnico }}</td>
+                <td></td>
+                <td>{{ registro_acta.ac_cargo_responsable }}</td>
+            </tr>
+            <tr>
+                <td style="height: 50px;">Firma:</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Fecha:</td>
+                <td>{{ registro_acta.ac_fecha_instalacion }}</td>
+                <td></td>
+                <td>{{ registro_acta.ac_fecha_instalacion }}</td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+    </div>
+{% endblock %}
+
+
+{% block js %}
+
+    <script>
+
+        $(document).ready(function() {
+                    $("#inicio").removeClass("active");
+                }
+        );
+
+
+        function imprimir(paraImprimir) {
+            var ficha = document.getElementById("print");
+            var ventimp = window.open(' ', '_blank');
+            ventimp.document.write( ficha.innerHTML );
+            ventimp.document.close();
+
+            ventimp.document.head.innerHTML= '<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.css"/> ' +
+
+            '<style>html{font-family: sans-serif;}body{} table{font-size:12px;   border-collapse: collapse;} td {width: 25%;} imagenes{width:100%;}</style>';
+
+            ventimp.print( );
+            ventimp.close();
+        }
+    </script>
+
+{% endblock %}

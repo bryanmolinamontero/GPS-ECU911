@@ -79,6 +79,12 @@ urlpatterns = patterns('',
     url(r'^submitIngresarActa/$', submitIngresarActa),
     url(r'^ingresarImagen/$', ingresarImagen),
     url(r'^buscarDepartamentoPorInstitucion/$', buscarDepartamentoPorInstitucion),
+
+    url(r'^visualizarActa/$', visualizarActa),
+        url(r'^consultarActa/(?P<id_uli>\d+)/$',consultarActa),
+
+
+
     #************* VALIDACIONES
     url(r'^verificarUnidad/$', verificarUnidad),
     url(r'^verificarImei/$', verificarImei),

@@ -498,16 +498,14 @@ def submitIngresarActa(request):
         imagen1 = None
         imagen2 = None
 
-
         try:
             imagen1 = request.FILES['imagen1']
         except Exception as ex:
-            print "ERROR en la imagen 1"
+            print "No se ha ingresado imagen 1"
         try:
             imagen2 = request.FILES['imagen2']
         except Exception as ex:
-            print "ERROR en la imagen 2"
-
+            print "No se ha ingresado imagen 2"
 
         #*** dos paneles de abajo***
         nombreInstalador = request.POST['nombreInstalador']
@@ -528,7 +526,7 @@ def submitIngresarActa(request):
             registroULI.save()
             extraerInstitucion = gps_instituciones.objects.get(in_id=institucion)
             idUli = gps_imei_linea_unidad.objects.get(uli_imei=imei, uli_linea=nroTarjeta, uli_canton = ciudad, uli_unidad = nombreUnidad,uli_estado_unidad =estadoVehiculo, uli_fecha_inicio = fechaDeInstalacion)
-            registroActas = gps_actas(ac_tipo = "", ac_fecha_instalacion = fechaDeInstalacion, ac_punto_instalacion = puntoDeInstalacion, ac_nombre_servidor = nombreDeServidor, ac_contrasenia = contrasenia, ac_intervalo = intervaloTransmision, ac_voltaje = voltaje, ac_nota = nota, ac_canton = ciudad, ac_provincia = provincia, ac_imei = imei, ac_serie_imei= numeroDeSerie, ac_linea= nroTarjeta, ac_sim_card= nroSerialTarjetaSim, ac_unidad = nombreUnidad, ac_institucion= extraerInstitucion.in_nombre, ac_departamento = idDepartamento.de_departmentName, ac_marca_unidad= marcaVehiculo, ac_modelo_unidad= modeloVehiculo, ac_placa_unidad= placaVehiculo, ac_anio_unidad= anioVehiculo, ac_estado_unidad = estadoVehiculo, ac_tipo_vehiculo = tipoVehiculo,  ac_tecnico = nombreInstalador, ac_cargo_tecnico = cargoInstalador, ac_responsable_unidad = nombreResponsable, ac_cargo_responsable = cargoResponsable, ac_estado_registro = True, ac_uli_id = idUli , ac_imagen1 =  imagen1, ac_imagen2 = imagen2)
+            registroActas = gps_actas(ac_tipo = "", ac_fecha_instalacion = fechaDeInstalacion, ac_punto_instalacion = puntoDeInstalacion, ac_nombre_servidor = nombreDeServidor, ac_contrasenia = contrasenia, ac_intervalo = intervaloTransmision, ac_voltaje = voltaje, ac_nota = nota, ac_lugar_de_instalacion = lugarDeInstalacion, ac_canton = ciudad, ac_provincia = provincia, ac_imei = imei, ac_serie_imei= numeroDeSerie, ac_linea= nroTarjeta, ac_sim_card= nroSerialTarjetaSim, ac_unidad = nombreUnidad, ac_institucion= extraerInstitucion.in_nombre, ac_departamento = idDepartamento.de_departmentName, ac_marca_unidad= marcaVehiculo, ac_modelo_unidad= modeloVehiculo, ac_placa_unidad= placaVehiculo, ac_anio_unidad= anioVehiculo, ac_estado_unidad = estadoVehiculo, ac_tipo_vehiculo = tipoVehiculo,  ac_tecnico = nombreInstalador, ac_cargo_tecnico = cargoInstalador, ac_responsable_unidad = nombreResponsable, ac_cargo_responsable = cargoResponsable, ac_estado_registro = True, ac_uli_id = idUli , ac_imagen1 =  imagen1, ac_imagen2 = imagen2)
             registroActas.save()
             transaction.commit()
 
@@ -539,8 +537,22 @@ def submitIngresarActa(request):
     else:
         return HttpResponseRedirect('/ingresarActa/')
 
-#**********************************
 
+def visualizarActa(request):
+    registros_imei_linea_unidad = gps_imei_linea_unidad.objects.all()
+
+    return render_to_response('visualizarActa.html', {"registros_imei_linea_unidad":registros_imei_linea_unidad})
+
+def consultarActa(request, id_uli):
+
+    id = id_uli
+    registro_uli = gps_imei_linea_unidad.objects.get(uli_id=id)
+    registro_acta = gps_actas.objects.get(ac_uli_id=registro_uli.uli_id)
+
+    return render_to_response('consultarActa.html', {"registro_acta":registro_acta})
+#    return HttpResponse(registro_acta)
+
+#**********************************
 
 
 def ingresarImagen(request):

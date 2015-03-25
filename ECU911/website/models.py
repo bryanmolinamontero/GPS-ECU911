@@ -48,7 +48,7 @@ class gps_imei(models.Model):
         db_table = 'gps_imei'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s, %s' % (self.im_id, self.im_imei, self.im_serial, self.im_codigo_gis, self.im_estado, self.im_origen, self.lugar, self.im_nota)
+        return '%d, %s, %s, %s, %s, %s, %s, %s' % (self.im_id, self.im_imei, self.im_serial, self.im_codigo_gis, self.im_estado, self.im_origen, self.im_lugar, self.im_nota)
 
 
 
@@ -137,7 +137,7 @@ class gps_imei_linea_unidad(models.Model):
     uli_estado_unidad = models.CharField(max_length=20, blank=True, null=True)
     uli_fecha_inicio = models.DateField(null=True, blank=True) #esta es solo date la del formulario
     uli_fecha_fin = models.DateField(null=True, blank=True) #tb es date y se guarda en blanco
-    uli_estado_actual = models.CharField(max_length=20, blank=True, null=True)
+    uli_estado_actual = models.CharField(max_length=20, blank=True, null=True) # para saber si el gps esta en uso
 
     uli_fecha_creacion = models.DateTimeField(null=True, blank=True) #en el insert fecha de sstemas
     uli_fecha_modificacion = models.DateTimeField(null=True, blank=True) #igual
@@ -153,7 +153,7 @@ class gps_imei_linea_unidad(models.Model):
         db_table = 'gps_imei_linea_unidad'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.uli_id, self.uli_imei, self.uli_linea, self.uli_canton, self.uli_unidad, self.uli_estado_unidad, self.uli_fecha_inicio, self.uli_fecha_fin, self.uli_fecha_creacion, self.uli_fecha_modificacion, self.uli_estado_registro, self.uli_linea_id, self.uli_imei_id, self.uli_unidades_id, self.uli_sim_card_id, self.uli_departamento_id)
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.uli_id, self.uli_imei, self.uli_linea, self.uli_canton, self.uli_unidad, self.uli_estado_unidad, self.uli_fecha_inicio, self.uli_fecha_fin, self.uli_estado_actual, self.uli_fecha_creacion, self.uli_fecha_modificacion, self.uli_estado_registro, self.uli_linea_id, self.uli_imei_id, self.uli_unidades_id, self.uli_sim_card_id, self.uli_departamento_id)
 
 
 
@@ -161,6 +161,7 @@ class gps_actas(models.Model):
     ac_id = models.AutoField(primary_key=True)
     ac_tipo = models.CharField(max_length=15, blank=True, null=True)
     ac_fecha_instalacion = models.DateField(null=True, blank=True) #esta es solo date la del formulario
+
     ac_punto_instalacion = models.CharField(max_length=25, blank=True, null=True)
     ac_nombre_servidor = models.CharField(max_length=30, blank=True, null=True)
     ac_contrasenia = models.CharField(max_length=25, blank=True, null=True)
@@ -168,6 +169,7 @@ class gps_actas(models.Model):
     ac_voltaje = models.CharField(max_length=15, blank=True, null=True)
     ac_nota = models.CharField(max_length=250, blank=True, null=True)
 
+    ac_lugar_de_instalacion = models.CharField(max_length=50, blank=True, null=True)
     ac_canton = models.CharField(max_length=50, blank=True, null=True)
     ac_provincia = models.CharField(max_length=50, blank=True, null=True)
     ac_imei = models.CharField(max_length=50, blank=True, null=True)
@@ -193,6 +195,8 @@ class gps_actas(models.Model):
     ac_imagen1 = models.ImageField(upload_to='imagenes',help_text='Seleccione la imagen para el acta...', null=True,blank=True)
     ac_imagen2 = models.ImageField(upload_to='imagenes',help_text='Seleccione la imagen para el acta...', null=True,blank=True)
 
+    ac_imagen_acta_firmada = models.ImageField(upload_to='imagenes',help_text='Seleccione la acta firmada...', null=True,blank=True)
+
 
     ac_fecha_creacion = models.DateTimeField(null=True, blank=True) #en el insert fecha de sstemas que se hara mediante un trigger en la base de datos
     ac_fecha_modificacion = models.DateTimeField(null=True, blank=True) #igual
@@ -201,13 +205,11 @@ class gps_actas(models.Model):
     ac_uli_id =models.ForeignKey('gps_imei_linea_unidad', db_column='uli_id')
 
 
-
-
     class Meta:
         db_table = 'gps_actas'
 
     def __unicode__(self):
-        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.ac_id, self.ac_tipo, self.ac_fecha_instalacion, self.ac_punto_instalacion, self.ac_nombre_servidor, self.ac_contrasenia, self.ac_intervalo, self.ac_voltaje, self.ac_nota, self.ac_canton, self.ac_provincia, self.ac_imei, self.ac_serie_imei, self.ac_linea, self.ac_sim_card, self.ac_unidad, self.ac_institucion, self.ac_departamento, self.ac_marca_unidad, self.ac_modelo_unidad, self.ac_placa_unidad, self.ac_anio_unidad, self.ac_estado_unidad, self.ac_tecnico, self.ac_cargo_tecnico, self.ac_responsable_unidad, self.ac_cargo_responsable,self.ac_fecha_creacion, self.ac_fecha_modificacion, self.ac_estado_registro, self.ac_usuario, self.uli_id)
+        return '%d, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s' % (self.ac_id, self.ac_tipo, self.ac_fecha_instalacion, self.ac_punto_instalacion, self.ac_nombre_servidor, self.ac_contrasenia, self.ac_intervalo, self.ac_voltaje, self.ac_nota, self.ac_lugar_de_instalacion, self.ac_canton, self.ac_provincia, self.ac_imei, self.ac_serie_imei, self.ac_linea, self.ac_sim_card, self.ac_unidad, self.ac_institucion, self.ac_departamento, self.ac_marca_unidad, self.ac_modelo_unidad, self.ac_placa_unidad, self.ac_anio_unidad, self.ac_estado_unidad, self.ac_tecnico, self.ac_cargo_tecnico, self.ac_responsable_unidad, self.ac_cargo_responsable,self.ac_fecha_creacion, self.ac_fecha_modificacion, self.ac_estado_registro, self.ac_usuario, self.ac_uli_id)
 
 
 class pruebita(models.Model):
